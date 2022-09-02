@@ -1,0 +1,52 @@
+section#banner{
+    min-height: 200px;
+    background-color: #F1F3FF;
+    .wrapper{
+        height: 500px;
+        &.banner{
+            height: 200px;
+            @media (max-width: 767.98px) {
+                height: 100px;
+            }
+        }
+        @media (max-width: 991.98px) {
+            height: 500px;
+            margin-top: 100px;
+        }
+        @media (max-width: 767.98px) {
+            height: 550px;
+            margin-top: 100px;
+        }
+        h1, p{
+            color: black;
+            font-weight: 700;
+        }
+        h1{
+            font-size: 36px;
+            line-height: 150%;
+        }
+        p{
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+    .hero-img{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100%;
+        background: url(../../assets/images/car-banner.png) no-repeat;
+        background-size: 95%;
+        background-position: right 0 bottom 0;
+        @media (max-width: 991.98px) {
+            width: 100%;
+            background-size: 60%;
+        }
+        @media (max-width: 767.98px) {
+            width: 100%;
+            background-size: 95%;
+        }
+    }
+}

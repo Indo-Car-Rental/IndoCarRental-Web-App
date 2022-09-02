@@ -1,0 +1,55 @@
+// @import '~bootstrap/scss/functions';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins/_breakpoints';
+
+section#ourservices{
+    padding-top: 70px;
+    padding-bottom: 35px;
+    .wrapper{
+        .image{
+            img{
+                height: 400px;
+                @media (max-width: 991.98px) {
+                    height: auto;
+                    width: 55%;
+                    margin-bottom: 40px;
+                }
+                @media (max-width: 767.98px) {
+                    height: auto;
+                    width: 80%;
+                    margin-bottom: 40px;
+                }
+            }
+        }
+        .desc{
+            h2, p, ul li{
+                color: black;
+            }
+            h2{
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 36px;
+            }
+            p{
+                font-size: 14px;
+                line-height: 20px;
+            }
+            ul{
+                margin-left: -32px;
+                li{
+                    list-style-type: none;
+                    background: url(../../assets/images/list.png) no-repeat left;
+                    background-size: 24px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    padding-left: 37px;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    &:not(:last-child){
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

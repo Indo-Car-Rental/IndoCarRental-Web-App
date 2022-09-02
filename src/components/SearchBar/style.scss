@@ -1,0 +1,89 @@
+section#searchbar{
+    margin-top: -45px;
+    // position: sticky;
+    // top: 69px;
+    // z-index: 100;
+
+    &[searchbar = true]{
+        z-index: 150 !important;
+    }
+
+    .search-wrapper{
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        width: 100%;
+        padding: 25px 25px;
+
+        .search-title{
+            h2{
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                color: black;
+            }
+        }
+
+        .search-input-wrapper{
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            @media (max-width: 991.98px) {
+            }
+            @media (max-width: 767.98px) {
+                flex-direction: column;
+            }
+            .search-input{
+                display: flex;
+                align-items: center;
+                width: 100%;
+    
+                div{
+                    width: 100%;
+                    label{
+                        font-weight: 300;
+                        font-size: 12px;
+                        line-height: 18px;
+                        color: #3C3C3C;
+                    }
+                    input, select{
+                        height: 36px;
+                        font-size: 12px;
+                        color: #8A8A8A;
+                        font-weight: 500;
+
+                        &:focus{
+                            box-shadow: none;
+                            border-color: #35B0A7 !important;
+                        }
+    
+                        &::placeholder{
+                            font-size: 12px;
+                            color: #8A8A8A;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+            .search-button{
+                display: flex;
+                align-items: flex-end;
+                height: 100%;
+    
+                button{
+                    width: 100px;
+                    height: 36px;
+                    font-weight: 700;
+                    font-size: 14px;
+
+                    &.btn-edit{
+                        border: 1px solid #0D28A6;
+                        background: white;
+                        color: #0D28A6;
+                    }
+                }
+            }
+        }
+    }
+    
+}
