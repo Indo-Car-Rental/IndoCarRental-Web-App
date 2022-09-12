@@ -7,7 +7,7 @@ const Login = () => {
     <div className="login">
       <Container>
         <Row>
-          <div className="d-flex flex-row">
+          <div className="wrapper d-flex flex-lg-row flex-column">
             <div className="left-section justify-content-center d-flex align-items-center">
               <div className="form-container d-flex align-items-start flex-column">
                 <AiOutlineCar size={50} />
