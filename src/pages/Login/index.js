@@ -1,8 +1,39 @@
 import { Container, Row, Input, Label, FormGroup, Button } from "reactstrap";
 import "./style.scss";
 import { AiOutlineCar } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { postLogin } from "../../redux/action/postAuth";
 
 const Login = () => {
+  const { status } = useSelector((state) => state);
+  console.log("status login", status)
+
+  const dispatch = useDispatch()
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
+
+  }
+  
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      email: email,
+      password: password
+    }
+
+    dispatch(postLogin(payload))
+  }
+
   return (
     <div className="login">
       <Container>
@@ -19,6 +50,7 @@ const Login = () => {
                     name="email"
                     type="email"
                     placeholder="Contoh: johndee@gmail.com"
+                    onChange={(e) => handleEmail(e)}
                   ></Input>
                   <Label for="password">Password</Label>
                   <Input
@@ -26,9 +58,10 @@ const Login = () => {
                     name="password"
                     type="password"
                     placeholder="6+ karakter"
+                    onChange={(e) => handlePassword(e)}
                   ></Input>
                 </FormGroup>
-                <Button className="login-button" color="primary">
+                <Button className="login-button" color="primary" onClick={(e) => handleSubmit(e)}>
                   Login
                 </Button>
                 <p className="login-button-text">
