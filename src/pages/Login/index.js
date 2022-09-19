@@ -4,35 +4,37 @@ import { AiOutlineCar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { postLogin } from "../../redux/action/postAuth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let navigate = useNavigate();
   const { status } = useSelector((state) => state);
-  console.log("status login", status)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmail = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
+  };
 
-  }
-  
   const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
-    dispatch(postLogin(payload))
-  }
+    dispatch(postLogin(payload));
+
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className="login">
@@ -61,7 +63,11 @@ const Login = () => {
                     onChange={(e) => handlePassword(e)}
                   ></Input>
                 </FormGroup>
-                <Button className="login-button" color="primary" onClick={(e) => handleSubmit(e)}>
+                <Button
+                  className="login-button"
+                  color="primary"
+                  onClick={(e) => handleSubmit(e)}
+                >
                   Login
                 </Button>
                 <p className="login-button-text">
