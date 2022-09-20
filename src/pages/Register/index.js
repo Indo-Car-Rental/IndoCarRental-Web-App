@@ -30,7 +30,7 @@ const Register = () => {
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Button block color="primary" className="mt-5">Register</Button>
+                                <Button block className="mt-5 btn-cta-blue">Register</Button>
                             </FormGroup>
                             <p>Already have an account? <a href="#">Sign In here</a></p>
                         </div>
