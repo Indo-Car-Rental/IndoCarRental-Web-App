@@ -8,12 +8,13 @@ import {
   AccordionBody,
 } from "reactstrap";
 import "./style.scss";
-import { DateRangePicker } from "rsuite";
 import "rsuite/styles/index.less";
 import CalendarRange from "../CalendarRange/CalendarRange";
+import { useState } from "react";
 
 const CarDetail = (props) => {
   const { car, formatRupiah } = props;
+  // const [time, setTime] = useState(value);
   return (
     <section id="cardetail">
       <Container>
@@ -102,16 +103,16 @@ const CarDetail = (props) => {
                       <i className="fa-solid fa-user-group"></i>{" "}
                       {!!car.category ? car.category : "Kategori"}
                     </p>
+                    <div className="calendar">
+                      <p>Tentukan lama sewa mobil (max. 7 hari)</p>
+                      <CalendarRange />
+                    </div>
                     <div className="car-price">
                       <p>Total</p>
                       <p>Rp {formatRupiah(!!car.price ? car.price : 0)}</p>
                     </div>
                   </>
                 )}
-                <div>
-                  <p>Tentukan lama sewa mobil (max. 7 hari)</p>
-                  <CalendarRange />
-                </div>
               </div>
             </div>
           </div>
