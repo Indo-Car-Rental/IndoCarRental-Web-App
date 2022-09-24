@@ -1,19 +1,58 @@
-import "./style.scss";
-import { FormGroup, Label, Input, Button } from "reactstrap";
+import "./style.scss"
+import { FormGroup, Label, Input, Button } from "reactstrap"
+import axios from 'axios'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 const Register = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [role, setRole] = useState('')
+    const navigate = useNavigate()
+
+    const handleEmail = (e) => {
+        console.log(e.target.value)
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e) => {
+        console.log(e.target.value)
+        setPassword(e.target.value)
+    }
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+        //console.log(Email, Password)
+        const payload = {
+            email: email,
+            password: password
+        }
+
+        axios
+        .post('https://bootcamp-rent-car.herokuapp.com/customer/auth/register', payload)
+        .then((response) => {
+            setRole(response.data)
+            navigate('/')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     return (  
         <div className="register-wrap">
             <div className="row">
                 <div className="col-lg-6">
                     <div className="left">
-                        <div class="form-left-wrap">
+                        <div className="form-left-wrap">
                             <h4 className="mb-5">Sign Up</h4>
+                            {!!role && <div className="alert alert-success">Register Berhasil</div>}
                             <FormGroup>
                                 <Label for="Email">
                                     Email :
                                 </Label>
-                                <Input 
+                                <Input
+                                    onChange={(e) => handleEmail(e)} 
                                     type="email" 
                                     placeholder='example: youremail@mail.com'
                                     required
@@ -23,14 +62,15 @@ const Register = () => {
                                 <Label for="password">
                                     Password :
                                 </Label>
-                                <Input 
+                                <Input
+                                    onChange={(e) => handlePassword(e)}  
                                     type="password" 
                                     placeholder='type your password'
                                     required
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Button block className="mt-5 btn-cta-blue">Register</Button>
+                                <Button onClick={handleRegister} block className="mt-5 btn-cta-blue">Register</Button>
                             </FormGroup>
                             <p>Already have an account? <a href="#">Sign In here</a></p>
                         </div>
