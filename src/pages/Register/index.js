@@ -8,21 +8,22 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     const handleEmail = (e) => {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setEmail(e.target.value)
     }
 
     const handlePassword = (e) => {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setPassword(e.target.value)
     }
 
     const handleRegister = (e) => {
         e.preventDefault()
-        //console.log(Email, Password)
+        console.log(email, password)
         const payload = {
             email: email,
             password: password
@@ -34,8 +35,9 @@ const Register = () => {
             setRole(response.data)
             navigate('/')
         })
-        .catch((err) => {
-            console.log(err)
+        .catch((message) => {
+            setError(message)
+            console.log(message)
         })
     }
 
@@ -46,7 +48,10 @@ const Register = () => {
                     <div className="left">
                         <div className="form-left-wrap">
                             <h4 className="mb-5">Sign Up</h4>
-                            {!!role && <div className="alert alert-success">Register Berhasil</div>}
+                            {!!role && <div className="alert alert-success">Registrasi Berhasil</div>}
+                            {
+                                !!error && <div className="alert alert-danger">{error.message} </div>
+                            }
                             <FormGroup>
                                 <Label for="Email">
                                     Email :
