@@ -37,3 +37,22 @@ body{
         position: relative;
     }
 }
+
+@media only screen and (max-width: 991px) {
+    .register-wrap{
+        .right{
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .register-wrap{
+        .left{
+            .form-left-wrap{
+                width: 100%;
+                padding: 0px 50px;
+            }
+        }
+    }
+}
