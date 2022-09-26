@@ -34,7 +34,7 @@ const DetailCar = () => {
         bannerContent,
         disableForm,
         car,
-        formatRupiah
+        formatRupiah,
     }
 
     return (
