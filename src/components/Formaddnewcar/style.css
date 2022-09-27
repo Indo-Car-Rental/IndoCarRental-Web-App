@@ -1,0 +1,16 @@
+.form-nama-mobil {
+    display: flex
+}
+
+/* .input-nama-mobil {
+    width: 500px;
+} */
+
+.button-cancel {
+    border-color: blue;
+    margin: 50px;
+}
+
+.button-submit {
+    border-color: blue;
+}
