@@ -14,6 +14,23 @@ import { useState } from "react";
 
 const CarDetail = (props) => {
   const { car, formatRupiah } = props;
+  const [tanggal, getTanggal] = useState(false);
+  const [totHarga, getTotHarga] = useState(1);
+  const handleClick = (e) => {
+    if (e == null) {
+      getTanggal(false);
+      getTotHarga(1);
+    } else {
+      getTanggal(true);
+      const diffDays = parseInt((e[1] - e[0]) / (1000 * 60 * 60 * 24), 10) + 1;
+      getTotHarga(diffDays);
+    }
+    // console.log(e[0]);
+    // console.log(e[1]);
+
+    // console.log(diffDays);
+  };
+
   // const [time, setTime] = useState(value);
   return (
     <section id="cardetail">
@@ -105,11 +122,21 @@ const CarDetail = (props) => {
                     </p>
                     <div className="calendar">
                       <p>Tentukan lama sewa mobil (max. 7 hari)</p>
-                      <CalendarRange />
+                      <CalendarRange handleClick={handleClick} />
                     </div>
                     <div className="car-price">
                       <p>Total</p>
-                      <p>Rp {formatRupiah(!!car.price ? car.price : 0)}</p>
+                      <p>
+                        Rp{" "}
+                        {formatRupiah(!!car.price ? car.price * totHarga : 0)}
+                      </p>
+                    </div>
+                    <div className="lanjut-button">
+                      {tanggal ? (
+                        <button>Lanjutkan Pembayaran</button>
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   </>
                 )}
