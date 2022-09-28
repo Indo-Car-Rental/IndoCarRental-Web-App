@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import moment from 'moment';
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Ripple } from "primereact/ripple";
-import { Button } from 'primereact/button';
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
+import "primeicons/primeicons.css";
 import axios from "axios";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -53,11 +54,34 @@ const Table = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const formatCurrency = (value) => {
+    return value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "IDR",
+    });
+  };
+
+  const formatDates = (value) => {
+    return moment(value).format('DD MMMM YYYY')
+  }
+
+  const priceBodyTemplate = (rowData) => {
+    return formatCurrency(rowData.total_price)
+  }
+
+  const datesBodyTemplateFinish = (rowData) => {
+    return formatDates(rowData.finish_rent_at)
+  }
+
+  const datesBodyTemplateStart = (rowData) => {
+    return formatDates(rowData.start_rent_at)
+  }
+
   console.log(data);
 
   const template1 = {
     layout:
-      "PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport",
+      "RowsPerPageDropdown CurrentPageReport PrevPageLink PageLinks NextPageLink ",
     PrevPageLink: (options) => {
       return (
         <button
@@ -119,21 +143,36 @@ const Table = () => {
         { label: "All", value: options.totalRecords },
       ];
 
+      const limitStyle = {
+        margin: "0px",
+        marginLeft: "10px",
+        padding: "0px",
+      };
+
       return (
-        <Dropdown
-          value={options.value}
-          options={dropdownOptions}
-          onChange={options.onChange}
-        />
+        <div>
+          <p style={limitStyle}>Limit</p>
+          <Dropdown
+            value={options.value}
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
+        </div>
       );
     },
     CurrentPageReport: (options) => {
+      const jumpToStyle = {
+        margin: "0px",
+        marginLeft: "5px",
+        padding: "0px",
+      };
+
       return (
         <span
           className="mx-3"
           style={{ color: "var(--text-color)", userSelect: "none" }}
         >
-          Go to{" "}
+          <p style={jumpToStyle}>Jump to page</p>
           <InputText
             size="2"
             className="ml-1"
@@ -162,9 +201,9 @@ const Table = () => {
           <Column field="id" header="No" sortable></Column>
           <Column field="User.email" header="User Email" sortable></Column>
           <Column field="CarId" header="Car" sortable></Column>
-          <Column field="start_rent_at" header="Start Rent" sortable></Column>
-          <Column field="finish_rent_at" header="Finish Rent" sortable></Column>
-          <Column field="total_price" header="Price" sortable></Column>
+          <Column field="start_rent_at" header="Start Rent" body={datesBodyTemplateStart} sortable></Column>
+          <Column field="finish_rent_at" header="Finish Rent" body={datesBodyTemplateFinish} sortable></Column>
+          <Column field="total_price" header="Price" body={priceBodyTemplate} sortable></Column>
           <Column field="User.role" header="Category" sortable></Column>
         </DataTable>
       </div>

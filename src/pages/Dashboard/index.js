@@ -3,8 +3,8 @@ import Table from "../../components/Table";
 const Dashboard = () => {
     return ( 
         <div>
-            <h1>Dashboard</h1>
-            <h2>List Order</h2>
+            <h4>Dashboard</h4>
+            <p>List Order</p>
             <Table />
         </div>
      );
