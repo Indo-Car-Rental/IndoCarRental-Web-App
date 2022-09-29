@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import moment from 'moment';
+import moment from "moment";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Ripple } from "primereact/ripple";
@@ -7,19 +7,27 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
 import "primeicons/primeicons.css";
-import axios from "axios";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../../redux/action/dataAction";
 
 const Table = () => {
-  const [data, setData] = useState([]);
+  const { dataOrder } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [first1, setFirst1] = useState(0);
   const [rows1, setRows1] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageInputTooltip, setPageInputTooltip] = useState(
     "Press 'Enter' key to go to this page."
   );
+
+  useEffect(() => {
+    dispatch(getData());
+
+    // eslint-disable-next-line
+  }, []);
 
   const onCustomPage1 = (event) => {
     setFirst1(event.first);
@@ -47,13 +55,6 @@ const Table = () => {
     setCurrentPage(event.target.value);
   };
 
-  useEffect(() => {
-    axios
-      .get(`https://bootcamp-rent-car.herokuapp.com/admin/order`)
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
-  }, []);
-
   const formatCurrency = (value) => {
     return value.toLocaleString("en-US", {
       style: "currency",
@@ -62,22 +63,20 @@ const Table = () => {
   };
 
   const formatDates = (value) => {
-    return moment(value).format('DD MMMM YYYY')
-  }
+    return moment(value).format("DD MMMM YYYY");
+  };
 
   const priceBodyTemplate = (rowData) => {
-    return formatCurrency(rowData.total_price)
-  }
+    return formatCurrency(rowData.total_price);
+  };
 
   const datesBodyTemplateFinish = (rowData) => {
-    return formatDates(rowData.finish_rent_at)
-  }
+    return formatDates(rowData.finish_rent_at);
+  };
 
   const datesBodyTemplateStart = (rowData) => {
-    return formatDates(rowData.start_rent_at)
-  }
-
-  console.log(data);
+    return formatDates(rowData.start_rent_at);
+  };
 
   const template1 = {
     layout:
@@ -190,7 +189,7 @@ const Table = () => {
     <div>
       <div className="card">
         <DataTable
-          value={data}
+          value={dataOrder.data}
           paginator
           paginatorTemplate={template1}
           first={first1}
@@ -201,9 +200,24 @@ const Table = () => {
           <Column field="id" header="No" sortable></Column>
           <Column field="User.email" header="User Email" sortable></Column>
           <Column field="CarId" header="Car" sortable></Column>
-          <Column field="start_rent_at" header="Start Rent" body={datesBodyTemplateStart} sortable></Column>
-          <Column field="finish_rent_at" header="Finish Rent" body={datesBodyTemplateFinish} sortable></Column>
-          <Column field="total_price" header="Price" body={priceBodyTemplate} sortable></Column>
+          <Column
+            field="start_rent_at"
+            header="Start Rent"
+            body={datesBodyTemplateStart}
+            sortable
+          ></Column>
+          <Column
+            field="finish_rent_at"
+            header="Finish Rent"
+            body={datesBodyTemplateFinish}
+            sortable
+          ></Column>
+          <Column
+            field="total_price"
+            header="Price"
+            body={priceBodyTemplate}
+            sortable
+          ></Column>
           <Column field="User.role" header="Category" sortable></Column>
         </DataTable>
       </div>
