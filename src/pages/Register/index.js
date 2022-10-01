@@ -1,14 +1,22 @@
 import "./style.scss"
 import { FormGroup, Label, Input, Button } from "reactstrap"
 import axios from 'axios'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
+
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
     const [error, setError] = useState('')
+
+    //CONFIRM PASSWORD
+    const [cPassword, setCPassword] = useState('')
+    const [cPasswordClass, setCPasswordClass] = useState('form-control')
+    const [isCPasswordDirty, setIsCPasswordDirty] = useState(false)
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
+
     const navigate = useNavigate()
 
     const handleEmail = (e) => {
@@ -19,6 +27,22 @@ const Register = () => {
     const handlePassword = (e) => {
         //console.log(e.target.value)
         setPassword(e.target.value)
+    }
+
+    //CONFIRM PASWORD
+    useEffect(() => {
+        if (password === cPassword) {
+            setShowErrorMessage(false)
+            setCPasswordClass('form-control is-valid')
+        } else {
+            setShowErrorMessage(true)
+            setCPasswordClass('form-control is-invalid')
+        }
+    }, [cPassword])
+
+    const handleCPassword = (e) => {
+        setCPassword(e.target.value)
+        setIsCPasswordDirty(true)
     }
 
     const handleRegister = (e) => {
@@ -33,7 +57,9 @@ const Register = () => {
         .post('https://bootcamp-rent-car.herokuapp.com/customer/auth/register', payload)
         .then((response) => {
             setRole(response.data)
-            navigate('/')
+            setTimeout(() => {
+                navigate('/login')
+            }, 3000)
         })
         .catch((message) => {
             setError(message)
@@ -49,9 +75,7 @@ const Register = () => {
                         <div className="form-left-wrap">
                             <h4 className="mb-5">Sign Up</h4>
                             {!!role && <div className="alert alert-success">Registrasi Berhasil</div>}
-                            {
-                                !!error && <div className="alert alert-danger">{error.message} </div>
-                            }
+                            {!!error && <div className="alert alert-danger">{error.message} </div>}
                             <FormGroup>
                                 <Label for="Email">
                                     Email :
@@ -70,9 +94,22 @@ const Register = () => {
                                 <Input
                                     onChange={(e) => handlePassword(e)}  
                                     type="password" 
-                                    placeholder='type your password'
+                                    placeholder='Type your password'
                                     required
                                 />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="confirm-password">
+                                    Confirm Password :
+                                </Label>
+                                <Input
+                                    type="password"
+                                    className={cPasswordClass}
+                                    onChange={(e) => handleCPassword(e)}  
+                                    placeholder='Retype your password'
+                                    required
+                                />
+                                {showErrorMessage && isCPasswordDirty ? <p className="small text-danger mt-2"> Password tidak cocok! </p> : ''}
                             </FormGroup>
                             <FormGroup>
                                 <Button onClick={handleRegister} block className="mt-5 btn-cta-blue">Register</Button>
