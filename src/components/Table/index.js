@@ -12,6 +12,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/dataAction";
+import axios from "axios";
+import './style.scss'
 
 const Table = () => {
   const { dataOrder } = useSelector((state) => state);
@@ -23,11 +25,23 @@ const Table = () => {
     "Press 'Enter' key to go to this page."
   );
 
+  // Versi Axios
+  const [data, setData] = useState([]);
   useEffect(() => {
-    dispatch(getData());
+    axios
+    .get("https://bootcamp-rent-car.herokuapp.com/admin/order")
+    .then((res) => {
+      console.log("res", res);
+      setData(res.data)
+    });
+  }, [])
 
-    // eslint-disable-next-line
-  }, []);
+  // versi redux
+  // useEffect(() => {
+  //   console.log("Call use effect");
+  //   dispatch(getData());
+  //   // eslint-disable-next-line
+  // }, []);
 
   const onCustomPage1 = (event) => {
     setFirst1(event.first);
@@ -174,6 +188,7 @@ const Table = () => {
           <p style={jumpToStyle}>Jump to page</p>
           <InputText
             size="2"
+            id="inputToPage"
             className="ml-1"
             value={currentPage}
             tooltip={pageInputTooltip}
@@ -189,7 +204,7 @@ const Table = () => {
     <div>
       <div className="card">
         <DataTable
-          value={dataOrder.data}
+          value={data}
           paginator
           paginatorTemplate={template1}
           first={first1}
