@@ -1,0 +1,90 @@
+#adminLogin{
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        @media (max-width: 991.98px) {
+            flex-direction: column;
+        }
+        @media (max-width: 767.98px) {
+            flex-direction: column;
+        }
+        .logo{
+            width: 100px;
+            height: 34px;
+            background-color: #CFD4ED;
+            margin-bottom: 32px;
+        }
+        .bg-car{
+            background: #0d28a6 url("./../../assets/images/bg-login.png") no-repeat;
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+            @media (max-width: 991.98px) {
+                height: 450px;
+            }
+            @media (max-width: 767.98px) {
+                height: 200px;
+            }
+        }
+        .form-login{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .form-login-wrapper{
+                width: 100%;
+                padding: 12%;
+                h1{
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: black;
+                    margin-bottom: 32px;
+                }
+                .alert{
+                    margin-bottom: 2rem;
+                }
+                .form-input{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 1rem;
+    
+                    label{
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #222222;
+                        margin-bottom: 8px;
+                    }
+    
+                    input{
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        border-radius: 5px;
+                        height: 37px;
+                        padding: 1rem;
+                        font-size: 12px;
+                        color: #151515;
+                        &::placeholder{
+                            color: #A5A5A5;
+                        }
+                    }
+                }
+                .btn-login{
+                    margin-top: 2rem;
+                    button{
+                        background: #0D28A6;
+                        border-radius: 2px;
+                        border-color: #0D28A6;
+                        color: white;
+                        font-weight: 700;
+                        font-size: 14px;
+                        width: 100%;
+                        padding: 7px;
+
+                        &:hover{
+                            opacity: 0.85;
+                        }
+                    }
+                }   
+            }
+        }
+    }
+}
