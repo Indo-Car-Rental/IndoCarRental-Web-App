@@ -6,6 +6,9 @@ import Cars from './pages/Cars';
 import DetailCar from './pages/DetailCar';
 import Register from './pages/Register';
 import EditCar from './pages/Admin/EditCar';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin'
 
 const App = () => {
   return (
@@ -16,6 +19,9 @@ const App = () => {
         <Route path="/detailmobil/:id" element={<DetailCar />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin/edit-car" element={<EditCar />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/admin" element={<Admin/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>
     </>
   );

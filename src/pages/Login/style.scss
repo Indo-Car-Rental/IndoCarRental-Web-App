@@ -1,0 +1,49 @@
+.login {
+
+  .left-section {
+    background-color: #fff;
+    width: 720px;
+    height: 100vh;
+
+    @media (max-width: 625px) {
+      width: 500px;
+    }
+
+    @media (max-width: 500px) {
+      width: 375px;
+    }
+
+    .form-container {
+      .login-form,
+      .login-button {
+        width: 370px;
+      }
+
+      .login-button {
+        background-color: #0d28a6;
+      }
+
+      .login-button-text {
+        margin-top: 10px;
+
+        a {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .right-section {
+    @media (max-width: 625px) {
+      visibility: hidden !important;
+    }
+
+    background-color: #0d28a6;
+    width: 720px;
+    height: 100vh;
+
+    .text-logo {
+      color: #fff;
+    }
+  }
+}
