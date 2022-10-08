@@ -1,0 +1,83 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.car-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin-left: 315px;
+  .car-card-container {
+    width: 351px;
+    height: 482px;
+    .card-content {
+      padding: 24px;
+      .card-image {
+        display: flex;
+        width: 303px;
+        height: 222px;
+        justify-content: center;
+        img {
+          width: 270px;
+          height: 160px;
+        }
+        .content-desc {
+          p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+          }
+          h1 {
+            font-family: "Arial";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+    .action-button {
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      .delete-button {
+        background: #ffffff;
+        border: 1px solid #fa2c5a;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        gap: 10px;
+
+        width: 143.5px;
+        height: 48px;
+        a {
+          color: #fa2c5a;
+        }
+      }
+      .edit-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        gap: 12px;
+
+        width: 143.5px;
+        height: 48px;
+
+        background: #5cb85f;
+        border-radius: 2px;
+        a {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
