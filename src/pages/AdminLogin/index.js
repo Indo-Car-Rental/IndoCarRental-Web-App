@@ -1,14 +1,17 @@
-import axios from 'axios';
 import { Alert } from 'reactstrap';
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { postLoginAdmin } from "../../redux/actions/postAuth";
 
 const AdminLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [alert, setAlert] = useState("");
+
     const navigate = useNavigate();
+    const { status } = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     const redirect = useCallback(
         () => navigate("/admin/dashboard", { replace: true }),
@@ -40,26 +43,12 @@ const AdminLogin = () => {
             password
         }
 
-        axios({
-            method: 'post',
-            url: 'https://bootcamp-rent-car.herokuapp.com/admin/auth/login',
-            data: payload
-          })
-          .then(function (res) {
-            if(res.status === 201){
-                localStorage.setItem('admin-token', res.data.access_token);
-                navigate("/admin/dashboard");
-            }
-          })
-          .catch(function (error) {
-            if(error.response.status === 400){
-                setAlert(error.response.data.message);
-            }else if(error.response.status === 404){
-                setAlert(error.response.data.message);
-            }else{
-                setAlert(error.response.data.message);
-            }
-          });
+        dispatch(postLoginAdmin(payload));
+    }
+
+    const aminToken = localStorage.getItem("admin-token");
+    if(aminToken){
+        navigate("/admin/dashboard", { replace: true });
     }
 
     return (
@@ -73,9 +62,9 @@ const AdminLogin = () => {
                         <div>
                             <h1>Welcome, Admin BCR</h1>
                         </div>
-                        {!!alert &&(
+                        {!!status.loginErrorStatus.message &&(
                             <Alert color='danger'>
-                                {alert}
+                                {status.loginErrorStatus.message}
                             </Alert>
                         )}
                         <div className='form-input'>
