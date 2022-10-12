@@ -6,9 +6,11 @@ import logo from "../../assets/images/car-banner.png";
 import EditLogo from "../../assets/images/fi_edit.svg";
 import DeleteLogo from "../../assets/images/fi_trash-2.svg";
 import "./style.scss";
+import Modal from "../AdminDeleteModal/Modal";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -16,6 +18,12 @@ const AdminCarList = () => {
       .then((res) => setCarData(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  // const handleDelete = (id) => {
+  //   axios.delete(`https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`).then(res => {if (res.status == 200){
+
+  //   }})
+  // }
 
   return (
     <div className="car-list">
@@ -36,7 +44,12 @@ const AdminCarList = () => {
                 </div>
               </div>
               <div className="action-button">
-                <div className="delete-button">
+                <div
+                  className="delete-button"
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
+                >
                   <img src={DeleteLogo} />
                   <a>Delete</a>
                 </div>
@@ -47,6 +60,7 @@ const AdminCarList = () => {
               </div>
             </div>
           ))}
+        {openModal && <Modal modalStatus={setOpenModal} />}
       </div>
     </div>
   );
