@@ -2,15 +2,35 @@
     display: flex
 }
 
-/* .input-nama-mobil {
-    width: 500px;
-} */
-
-.button-cancel {
-    border-color: blue;
-    margin: 50px;
+.rank-math-breadcrumb {
+    padding-bottom: 27px;
+    font-size: 18px;
 }
 
-.button-submit {
-    border-color: blue;
+.cars {
+    color: black;
+    font-weight: bold;
+}
+
+.list-car {
+    color: black;
+    font-weight: bold;
+}
+
+.add-new-car {
+    padding-bottom: 16px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.tombol {
+    color: blue;
+}
+
+.button-cancel {
+    color: blue;
+}
+
+.button-save {
+    color: blue;
 }
