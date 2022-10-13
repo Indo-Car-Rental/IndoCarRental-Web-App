@@ -1,18 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from './pages/Home';
-import Cars from './pages/Cars';
-import DetailCar from './pages/DetailCar';
-import Register from './pages/Register';
-import EditCar from './pages/Admin/EditCar';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Admin from './pages/Admin'
-import AdminLogin from './pages/AdminLogin';
-import { useState, useEffect } from 'react';
-import ProtectedRoute from './HOC/ProtectedRoute';
-import Formnewcar from './pages/Formnewcar';
+import Home from "./pages/Home";
+import Cars from "./pages/Cars";
+import DetailCar from "./pages/DetailCar";
+import Register from "./pages/Register";
+import EditCar from "./pages/Admin/EditCar";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
+import { useState, useEffect } from "react";
+import ProtectedRoute from "./HOC/ProtectedRoute";
+import Formnewcar from "./pages/Formnewcar";
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -36,16 +36,16 @@ const App = () => {
         <Route path="/detailmobil/:id" element={<DetailCar />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin/edit-car" element={<EditCar />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/admin" element={<Admin/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
         <Route
-          path="admin/login" 
+          path="admin/login"
           element={<AdminLogin setCmsIsLogin={cmsIsLogin} />}
         />
-        <Route 
+        <Route
           path="admin/dashboard"
           element={
-            <ProtectedRoute cmsIsLogin={cmsIsLogin} >
+            <ProtectedRoute cmsIsLogin={cmsIsLogin}>
               <Dashboard />
             </ProtectedRoute>
           }
@@ -54,6 +54,6 @@ const App = () => {
       </Routes>
     </>
   );
-}
+};
 
 export default App;
