@@ -1,10 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import DetailCar from './pages/DetailCar';
 import AdminLogin from './pages/AdminLogin';
+import Dashboard from './pages/Dashboard';
 import { useState, useEffect } from 'react';
 
 const App = () => {
@@ -31,6 +33,7 @@ const App = () => {
           path="admin/login" 
           element={<AdminLogin setCmsIsLogin={cmsIsLogin} />}
         />
+        <Route path="admin/dashboard" element={<Dashboard/>} />
       </Routes>
     </>
   );
