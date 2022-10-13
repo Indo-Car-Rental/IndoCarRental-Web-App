@@ -10,9 +10,10 @@ const Modal = ({ modalStatus }) => {
     axios
       .delete(`https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           modalStatus(false);
           console.log(res);
+          document.body.style.overflow = "unset";
         }
       });
   };

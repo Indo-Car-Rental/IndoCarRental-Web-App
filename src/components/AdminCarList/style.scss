@@ -3,6 +3,140 @@
   padding: 0px;
 }
 
+.title {
+  margin-left: 315px;
+  display: flex;
+  width: 1101px;
+  justify-content: space-between;
+  h1 {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: black;
+  }
+  button {
+    width: 143px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 12px;
+    background: #0d28a6;
+    border-radius: 2px;
+    color: white;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.category {
+  display: flex;
+  gap: 16px;
+  margin-left: 315px;
+  .all-category {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 10px;
+
+    width: 42px;
+    height: 36px;
+    background: #cfd4ed;
+    border: 1px solid #0d28a6;
+    border-radius: 2px;
+  }
+}
+.category2 {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+
+  width: 102px;
+  height: 36px;
+
+  /* Neutral/10
+
+FFFFFF
+*/
+  background: #ffffff;
+  /* Primary/DarkBlue/02
+
+AEB7E1
+*/
+  border: 1px solid #aeb7e1;
+  border-radius: 2px;
+}
+.category3 {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+
+  width: 102px;
+  height: 36px;
+
+  /* Neutral/10
+
+FFFFFF
+*/
+  background: #ffffff;
+  /* Primary/DarkBlue/02
+
+AEB7E1
+*/
+  border: 1px solid #aeb7e1;
+  border-radius: 2px;
+}
+.category4 {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+
+  width: 102px;
+  height: 36px;
+
+  /* Neutral/10
+
+FFFFFF
+*/
+  background: #ffffff;
+  /* Primary/DarkBlue/02
+
+AEB7E1
+*/
+  border: 1px solid #aeb7e1;
+  border-radius: 2px;
+}
+
 .car-list-container {
   display: flex;
   flex-wrap: wrap;
