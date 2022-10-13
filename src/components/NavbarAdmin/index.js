@@ -1,5 +1,7 @@
 import "./style.scss";
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {
     Dropdown,
     DropdownToggle,
@@ -7,21 +9,35 @@ import {
     DropdownItem
   } from 'reactstrap';
 import SideBar from "./SideBar";
+import { dataSideBar } from "../../redux/actions/dataSideBar";
 
 const NavbarAdmin = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     
     const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+    const handleLogout = () =>{
+        localStorage.removeItem('admin-token');
+        navigate("/admin/login", { replace: true });
+    }
+
+    const { sideBar } = useSelector((state) => state);
+
+    const handleHideSideBar = () =>{
+        dispatch(dataSideBar(!sideBar.hideSideBar));
+    }
 
     return (
         <>
             <header id='navbar'>
                 <div className="col">
-                    <div className={!!props.hideSideBar === true ? 'hide logo-big-wrapper' : 'show logo-big-wrapper'}>
+                    <div className={!!sideBar.hideSideBar === true ? 'hide logo-big-wrapper' : 'show logo-big-wrapper'}>
                         <div className="logo-big">
                         </div>
                     </div>
-                    <i className="fa-solid fa-bars hamburger" onClick={props.handleHideSideBar}></i>
+                    <i className="fa-solid fa-bars hamburger" onClick={handleHideSideBar}></i>
                 </div>
                 <div className="col">
                     <form>
@@ -39,7 +55,7 @@ const NavbarAdmin = (props) => {
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem header>Log in as Admin</DropdownItem>
-                            <DropdownItem>Log out</DropdownItem>
+                            <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

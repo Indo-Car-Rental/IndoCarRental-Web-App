@@ -8,6 +8,7 @@ import DetailCar from './pages/DetailCar';
 import AdminLogin from './pages/AdminLogin';
 import Dashboard from './pages/Dashboard';
 import { useState, useEffect } from 'react';
+import ProtectedRoute from './HOC/ProtectedRoute';
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -33,7 +34,14 @@ const App = () => {
           path="admin/login" 
           element={<AdminLogin setCmsIsLogin={cmsIsLogin} />}
         />
-        <Route path="admin/dashboard" element={<Dashboard/>} />
+        <Route 
+          path="admin/dashboard"
+          element={
+            <ProtectedRoute cmsIsLogin={cmsIsLogin} >
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

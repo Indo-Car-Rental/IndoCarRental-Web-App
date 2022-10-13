@@ -1,6 +1,8 @@
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 const SideBar = (props) => {
+    const { sideBar } = useSelector((state) => state);
     return (
         <>
             <aside className="sidebar">
@@ -19,7 +21,7 @@ const SideBar = (props) => {
                     </a>
                 </nav>
             </aside>
-            <aside className={!!props.hideSideBar === true ? 'hide sub-sidebar' : 'show sub-sidebar'}>
+            <aside className={!!sideBar.hideSideBar === true ? 'hide sub-sidebar' : 'show sub-sidebar'}>
                 <p className="title">{props.page}</p>
                 <nav>
                     <a>{props.page}</a>

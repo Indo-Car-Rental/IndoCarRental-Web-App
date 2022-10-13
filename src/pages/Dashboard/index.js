@@ -1,5 +1,5 @@
 import "./style.scss";
-import { useState } from 'react';
+import { useSelector } from "react-redux";
 import {
     Breadcrumb,
     BreadcrumbItem
@@ -9,24 +9,17 @@ import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
 
 const Dashboard = () => {
-    const [hideSideBar, setHideSideBar] = useState(false);
-
-    const handleHideSideBar = () =>{
-        setHideSideBar(!hideSideBar);
-    }
-
     const page = "dashboard";
+    const { sideBar } = useSelector((state) => state);
 
     const props = {
-        handleHideSideBar,
-        hideSideBar,
         page
     }
 
     return (
         <div>
             <NavbarAdmin {...props} />
-            <main className={!!hideSideBar === true ? 'fullwidth' : ''}>
+            <main className={!!sideBar.hideSideBar === true ? 'fullwidth' : ''}>
                 <div className="breadcrumb-wrapper">
                     <Breadcrumb>
                         <BreadcrumbItem>
