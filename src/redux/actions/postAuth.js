@@ -4,7 +4,7 @@ import axios from "axios";
 export const postLoginAdmin = (payload) => (dispatch) => {
     axios({
       method: 'post',
-      url: 'https://bootcamp-rent-car.herokuapp.com/admin/auth/login',
+      url: 'https://bootcamp-rent-cars.herokuapp.com/admin/auth/login',
       data: payload
     })
     .then(function (res) {
