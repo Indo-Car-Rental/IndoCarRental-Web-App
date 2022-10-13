@@ -65,7 +65,7 @@ const CarsChart = () => {
           data: []
         }]
     });
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState("june");
     const [data, setData] = useState(dataJune);
 
     useEffect(() => {
