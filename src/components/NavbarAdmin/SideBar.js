@@ -11,11 +11,11 @@ const SideBar = (props) => {
                     </div>
                 </div>
                 <nav>
-                    <a href="" className={props.page === 'dashboard' ? 'active' : ''}>
+                    <a href="/admin/dashboard" className={props.page === 'dashboard' ? 'active' : ''}>
                         <i class="fa-solid fa-house"></i>
                         <p>Dashboard</p>
                     </a>
-                    <a href="" className={props.page === 'cars' ? 'active' : ''}>
+                    <a href="/admin/cars" className={props.page === 'cars' ? 'active' : ''}>
                         <i class="fa-solid fa-truck"></i>
                         <p>Cars</p>
                     </a>
