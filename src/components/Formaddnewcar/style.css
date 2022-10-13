@@ -1,0 +1,43 @@
+.form-nama-mobil {
+    display: flex
+}
+
+.rank-math-breadcrumb {
+    padding-bottom: 27px;
+    font-size: 18px;
+}
+
+.cars {
+    color: black;
+    font-weight: bold;
+}
+
+.list-car {
+    color: black;
+    font-weight: bold;
+}
+
+.add-new-car {
+    padding-bottom: 16px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.cancel {
+    color: blue;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 250px;
+}
+
+.save {
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    margin-top: 250px;
+    margin-left: 16px;
+}
+
+.placeholder {
+    background-color: white;
+}

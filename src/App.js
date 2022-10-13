@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
@@ -13,6 +12,7 @@ import Admin from './pages/Admin'
 import AdminLogin from './pages/AdminLogin';
 import { useState, useEffect } from 'react';
 import ProtectedRoute from './HOC/ProtectedRoute';
+import Formnewcar from './pages/Formnewcar';
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -50,6 +50,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/admin/form-add-new-car" element={<Formnewcar />} />
       </Routes>
     </>
   );
