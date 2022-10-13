@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Label, Input, FormGroup, Form, FormText, Col } from "reactstrap";
+import { Button, Label, Input, FormGroup, Form, FormText, Col, Placeholder } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Formaddnewcar/style.css'
-import { FiUpload } from "react-icons/fi"
 
 const Formaddnewcar = () => {
 
@@ -73,7 +72,7 @@ const Formaddnewcar = () => {
           </FormGroup>
           <FormGroup row>
             <Label
-              for="exampleSelect"
+              for="Select"
               sm={2}
             >
               Kategori
@@ -85,11 +84,11 @@ const Formaddnewcar = () => {
                   placeholder="Pilih Kategori Mobil"
                   type="select"
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option>Avanza</option>
+                  <option>Xenia</option>
+                  <option>Innova</option>
+                  <option>Agya</option>
+                  <option>Ayla</option>
                 </Input>
               </Col>
           </FormGroup>
@@ -101,11 +100,7 @@ const Formaddnewcar = () => {
               Created at
             </Label>
               <Col sm={10}>
-                <Input
-                  id="exampleText"
-                  name="text"
-                  type="textarea"
-                />
+                <p>-</p>
               </Col>
           </FormGroup>
           <FormGroup row>
@@ -116,21 +111,15 @@ const Formaddnewcar = () => {
               Updated at
             </Label>
               <Col sm={10}>
-                <Input
-                  id="exampleText"
-                  name="text"
-                  type="textarea"
-                />
+                <p>-</p>
               </Col>
           </FormGroup>
-            <div className="tombol">
-              <Button class="button-cancel">
+              <Button className="cancel">
                 Cancel
               </Button>
-              <Button class="button-save">
+              <Button className="save">
                 Save
               </Button>
-            </div>
         </Form>
       </div>
     </div>

@@ -23,14 +23,21 @@
     font-size: 30px;
 }
 
-.tombol {
+.cancel {
     color: blue;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 250px;
 }
 
-.button-cancel {
-    color: blue;
+.save {
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    margin-top: 250px;
+    margin-left: 16px;
 }
 
-.button-save {
-    color: blue;
+.placeholder {
+    background-color: white;
 }
