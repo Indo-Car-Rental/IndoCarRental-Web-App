@@ -84,11 +84,9 @@ const Formaddnewcar = () => {
                   placeholder="Pilih Kategori Mobil"
                   type="select"
                 >
-                  <option>Avanza</option>
-                  <option>Xenia</option>
-                  <option>Innova</option>
-                  <option>Agya</option>
-                  <option>Ayla</option>
+                  <option>2-4 people</option>
+                  <option>4-6 people</option>
+                  <option>6-8 people</option>
                 </Input>
               </Col>
           </FormGroup>
