@@ -40,7 +40,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route
           path="admin/login"
-          element={<AdminLogin setCmsIsLogin={cmsIsLogin} />}
+          element={<AdminLogin setCmsIsLogin={setCmsIsLogin} />}
         />
         <Route
           path="admin/dashboard"

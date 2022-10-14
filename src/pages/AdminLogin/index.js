@@ -5,7 +5,7 @@ import './style.scss';
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginAdmin } from "../../redux/actions/postAuth";
 
-const AdminLogin = () => {
+const AdminLogin = ({setCmsIsLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -49,6 +49,7 @@ const AdminLogin = () => {
     const aminToken = localStorage.getItem("admin-token");
     if(aminToken){
         navigate("/admin/dashboard", { replace: true });
+        setCmsIsLogin(true);
     }
 
     return (
