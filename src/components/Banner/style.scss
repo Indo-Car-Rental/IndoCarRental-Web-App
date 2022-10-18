@@ -1,10 +1,11 @@
 section#banner{
     min-height: 200px;
     background-color: #F1F3FF;
+    margin-bottom: -120px;
     .wrapper{
         height: 500px;
         &.banner{
-            height: 200px;
+            height: 270px;
             @media (max-width: 767.98px) {
                 height: 100px;
             }

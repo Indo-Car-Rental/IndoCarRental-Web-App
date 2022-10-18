@@ -1,9 +1,4 @@
-section#searchbar{
-    margin-top: -45px;
-    // position: sticky;
-    // top: 69px;
-    // z-index: 100;
-
+section#detailpaymentbar{
     &[searchbar = true]{
         z-index: 150 !important;
     }
@@ -42,16 +37,21 @@ section#searchbar{
                 div{
                     width: 100%;
                     label{
-                        font-weight: 300;
-                        font-size: 12px;
+                        font-weight: 400;
+                        font-size: 14px;
                         line-height: 18px;
                         color: #3C3C3C;
                     }
+                    p{
+                        font-size: 14px;
+                        color: #8A8A8A;
+                        font-weight: 400;
+                    }
                     input, select{
                         height: 36px;
-                        font-size: 12px;
+                        font-size: 14px;
                         color: #8A8A8A;
-                        font-weight: 500;
+                        font-weight: 400;
 
                         &:focus{
                             box-shadow: none;

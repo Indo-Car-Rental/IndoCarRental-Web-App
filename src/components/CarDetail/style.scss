@@ -16,6 +16,11 @@ section#cardetail {
         }
 
         strong {
+          &:first-child{
+            p{
+              margin-bottom: 13px;
+            }
+          }
           p {
             font-weight: 700;
             font-size: 14px;
