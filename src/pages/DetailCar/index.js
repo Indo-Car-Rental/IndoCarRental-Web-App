@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import CarDetail from '../../components/CarDetail';
+import './style.scss';
 
 const DetailCar = () => {
     const bannerContent = false;
@@ -38,13 +39,13 @@ const DetailCar = () => {
     }
 
     return (
-        <>
+        <div className='page-detailcar'>
             <Navbar {...props} />
             <Banner />
             <SearchBar {...props} />
             <CarDetail {...props} />
             <Footer />
-        </>
+        </div>
     );
 }
  

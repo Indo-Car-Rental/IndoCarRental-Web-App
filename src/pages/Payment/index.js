@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import DetailPaymentBar from '../../components/DetailPaymentBar';
 import DetailPaymentContent from '../../components/DetailPaymentContent';
 import BreadcrumbPayment from '../../components/BreadcrumbPayment';
+import './style.scss';
 
 const Payment = () => {
     const bannerContent = false;
@@ -39,14 +40,14 @@ const Payment = () => {
     }
 
     return (
-        <>
+        <div className='page-payment'>
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment />
             <DetailPaymentBar />
             <DetailPaymentContent />
             <Footer />
-        </>
+        </div>
     );
 }
  
