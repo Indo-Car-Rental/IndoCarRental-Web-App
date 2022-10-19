@@ -4,7 +4,6 @@
 }
 
 .title {
-  margin-left: 315px;
   display: flex;
   width: 1101px;
   justify-content: space-between;
@@ -39,7 +38,6 @@
 .category {
   display: flex;
   gap: 16px;
-  margin-left: 315px;
   .all-category {
     box-sizing: border-box;
 
@@ -141,7 +139,6 @@ AEB7E1
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
-  margin-left: 315px;
   .car-card-container {
     width: 351px;
     height: 482px;

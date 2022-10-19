@@ -11,13 +11,19 @@ import Modal from "../AdminDeleteModal/Modal";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
+  const [id, setId] = useState();
 
   const fetchCar = async () => {
     try {
+      const token = localStorage.getItem("admin-token");
       const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car`
+        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car`,
+        {
+          headers: { access_token: `${token}` },
+        }
       );
-      setCarData(res.data);
+      setCarData(res.data.cars);
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -52,11 +58,13 @@ const AdminCarList = () => {
                   <img src={item.image} alt="" />
                 </div>
                 <div className="content-desc">
-                  <p>Nama/Tipe Mobil</p>
+                  <p>{item.name}</p>
                   <p>Rp {item.price} / hari</p>
                   <p>{item.category}</p>
-                  <p>Start Rent - Finish Rent</p>
-                  <p>Updated at</p>
+                  <p>
+                    {item.start_rent_at} - {item.finish_rent_at}
+                  </p>
+                  <p>{item.updatedAt}</p>
                 </div>
               </div>
               <div className="action-button">
@@ -64,6 +72,7 @@ const AdminCarList = () => {
                   className="delete-button"
                   onClick={() => {
                     setOpenModal(true);
+                    setId(item.id);
                     document.body.style.overflow = "hidden";
                   }}
                 >
@@ -77,7 +86,7 @@ const AdminCarList = () => {
               </div>
             </div>
           ))}
-        {openModal && <Modal modalStatus={setOpenModal} />}
+        {openModal && <Modal modalStatus={setOpenModal} idStatus={id} />}
       </div>
     </div>
   );
