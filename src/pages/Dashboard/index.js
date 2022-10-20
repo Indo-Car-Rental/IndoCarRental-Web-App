@@ -4,6 +4,7 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import CarsChart from "../../components/CarsChart";
 import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
+import Table from "../../components/Table"
 
 const Dashboard = () => {
   const page = "dashboard";
@@ -28,6 +29,7 @@ const Dashboard = () => {
         <div className="content">
           <SectionTitle title={"Rental Car Data Visualization"} />
           <CarsChart />
+          <Table />
         </div>
       </main>
     </div>
