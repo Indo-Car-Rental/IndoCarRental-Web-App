@@ -28,11 +28,16 @@ const Table = () => {
   // Versi Axios
   const [data, setData] = useState([]);
   useEffect(() => {
+    const accessToken = localStorage.getItem('admin-token');
     axios
-    .get("https://bootcamp-rent-car.herokuapp.com/admin/order")
+    .get("https://bootcamp-rent-cars.herokuapp.com/admin/v2/order", {
+      headers: {
+        "access_token": accessToken
+      }
+    })
     .then((res) => {
-      console.log("res", res);
-      setData(res.data)
+      console.log("res", res.data.orders);
+      setData(res.data.orders)
     });
   }, [])
 
