@@ -18,8 +18,8 @@ const SideBar = (props) => {
             <p>Dashboard</p>
           </a>
           <a
-            href="/admin/car-list"
-            className={props.page === "car-list" ? "active" : ""}
+            href="/admin/cars"
+            className={props.page === "cars" ? "active" : ""}
           >
             <i class="fa-solid fa-truck"></i>
             <p>Cars</p>

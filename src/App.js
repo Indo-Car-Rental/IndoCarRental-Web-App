@@ -52,7 +52,7 @@ const App = () => {
           }
         />
         <Route
-          path="admin/car-list"
+          path="admin/cars"
           element={
             <ProtectedRoute cmsIsLogin={cmsIsLogin}>
               <AdminCarDashboard />

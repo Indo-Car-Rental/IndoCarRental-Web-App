@@ -12,7 +12,16 @@ import Modal from "../AdminDeleteModal/Modal";
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
   const [id, setId] = useState();
+  const [name, setName] = useState("");
+  const [carFilterSearch, setCarFilterSearch] = useState([]);
+  const [categoryClicked, setCategoryClicked] = useState(false);
 
+  const handleSearch = (e) => {
+    setName(e.target.value);
+    if (e.target.value.length === 0) {
+      setCarFilterSearch([]);
+    }
+  };
   const fetchCar = async () => {
     try {
       const token = localStorage.getItem("admin-token");
@@ -23,10 +32,63 @@ const AdminCarList = () => {
         }
       );
       setCarData(res.data.cars);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  // const btnFilterSmall = () => {
+
+  // };
+  // console.log(btnFilterSmall);
+  const fetchCarSmall = async () => {
+    try {
+      const token = localStorage.getItem("admin-token");
+      const res = await axios.get(
+        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=small`,
+        {
+          headers: { access_token: `${token}` },
+        }
+      );
+      setCarData(res.data.cars);
+      setCategoryClicked((categoryClicked) => !categoryClicked);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchCarMedium = async () => {
+    try {
+      const token = localStorage.getItem("admin-token");
+      const res = await axios.get(
+        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=medium`,
+        {
+          headers: { access_token: `${token}` },
+        }
+      );
+      setCarData(res.data.cars);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchCarLarge = async () => {
+    try {
+      const token = localStorage.getItem("admin-token");
+      const res = await axios.get(
+        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=large`,
+        {
+          headers: { access_token: `${token}` },
+        }
+      );
+      setCarData(res.data.cars);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const props = {
+    handleSearch,
   };
 
   useEffect(() => {
@@ -44,10 +106,18 @@ const AdminCarList = () => {
         </button>
       </div>
       <div className="category">
-        <button className="all-category">All</button>
-        <button className="category2">2-4 People</button>
-        <button className="category3">4-6 People</button>
-        <button className="category4">6-8 People</button>
+        <button className="all-category" onClick={() => fetchCar()}>
+          All
+        </button>
+        <button className="category2" onClick={() => fetchCarSmall()}>
+          2-4 People
+        </button>
+        <button className="category3" onClick={() => fetchCarMedium()}>
+          4-6 People
+        </button>
+        <button className="category4" onClick={() => fetchCarLarge()}>
+          6-8 People
+        </button>
       </div>
       <div className="car-list-container">
         {carData.length > 0 &&

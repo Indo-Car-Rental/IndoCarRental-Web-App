@@ -7,7 +7,7 @@ import NavbarAdmin from "../../components/NavbarAdmin";
 import "./style.scss";
 
 const AdminCarDashboard = () => {
-  const page = "car-list";
+  const page = "cars";
   const { sideBar } = useSelector((state) => state);
   const props = {
     page,
@@ -25,7 +25,6 @@ const AdminCarDashboard = () => {
           </Breadcrumb>
         </div>
         <div className="content">
-          <SectionTitle title={"Rental Car Data Visualization"} />
           <AdminCarList />
         </div>
       </main>
