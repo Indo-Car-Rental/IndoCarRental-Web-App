@@ -2,31 +2,34 @@ import Navbar from '../../components/Navbar';
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import { navList } from '../../const/staticData';
-import DetailPaymentBar from '../../components/DetailPaymentBar';
-import DetailPaymentContent from '../../components/DetailPaymentContent';
+import DetailPaymentUploadContent from '../../components/DetailPaymentUploadContent';
 import BreadcrumbPayment from '../../components/BreadcrumbPayment';
 import './style.scss';
 
-const Payment = () => {
+const PaymentUpload = () => {
     const bannerContent = false;
-    const page = 'payment';
+    const page = 'paymentupload';
+
+    // sementara
+    const bank = true;
+    // sementara
 
     const props = {
         navList,
         bannerContent,
-        page
+        page,
+        bank
     }
 
     return (
-        <div className='page-payment'>
+        <div className="page-paymentupload">
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />
-            <DetailPaymentBar />
-            <DetailPaymentContent />
+            <DetailPaymentUploadContent />
             <Footer />
         </div>
     );
 }
  
-export default Payment;
+export default PaymentUpload;

@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import ProtectedRoute from "./HOC/ProtectedRoute";
 import Formnewcar from "./pages/Formnewcar";
 import Payment from "./pages/Payment";
+import PaymentUpload from "./pages/PaymentUpload";
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -53,6 +54,7 @@ const App = () => {
         />
         <Route path="/admin/form-add-new-car" element={<Formnewcar />} />
         <Route path="/pembayaran" element={<Payment />} />
+        <Route path="/konfirmasi-pembayaran" element={<PaymentUpload />} />
       </Routes>
     </>
   );
