@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { cardWhyUs } from "../../const/staticData";
-import logo from "../../assets/images/car-banner.png";
 import EditLogo from "../../assets/images/fi_edit.svg";
 import DeleteLogo from "../../assets/images/fi_trash-2.svg";
 import AddLogo from "../../assets/images/fi_plus.svg";
@@ -37,10 +35,6 @@ const AdminCarList = () => {
     }
   };
 
-  // const btnFilterSmall = () => {
-
-  // };
-  // console.log(btnFilterSmall);
   const fetchCarSmall = async () => {
     try {
       const token = localStorage.getItem("admin-token");

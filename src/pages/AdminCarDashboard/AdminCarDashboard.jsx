@@ -25,7 +25,7 @@ const AdminCarDashboard = () => {
           </Breadcrumb>
         </div>
         <div className="content">
-          <AdminCarList />
+          <AdminCarList {...props} />
         </div>
       </main>
     </div>

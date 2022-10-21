@@ -1,5 +1,6 @@
 import "./style.scss";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideBar = (props) => {
   const { sideBar } = useSelector((state) => state);
@@ -10,20 +11,20 @@ const SideBar = (props) => {
           <div className="logo"></div>
         </div>
         <nav>
-          <a
-            href="/admin/dashboard"
+          <Link
+            to={`/admin/dashboard`}
             className={props.page === "dashboard" ? "active" : ""}
           >
             <i class="fa-solid fa-house"></i>
             <p>Dashboard</p>
-          </a>
-          <a
-            href="/admin/cars"
+          </Link>
+          <Link
+            to={`/admin/cars`}
             className={props.page === "cars" ? "active" : ""}
           >
             <i class="fa-solid fa-truck"></i>
             <p>Cars</p>
-          </a>
+          </Link>
         </nav>
       </aside>
       <aside

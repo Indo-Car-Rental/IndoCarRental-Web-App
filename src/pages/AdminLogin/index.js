@@ -14,7 +14,7 @@ const AdminLogin = () => {
   const dispatch = useDispatch();
 
   const redirect = useCallback(
-    () => navigate("/admin/cars", { replace: true }),
+    () => navigate("/admin/dashboard", { replace: true }),
     [navigate]
   );
 
