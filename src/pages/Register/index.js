@@ -94,7 +94,7 @@ const Register = () => {
                                 <Input
                                     onChange={(e) => handlePassword(e)}  
                                     type="password" 
-                                    placeholder='Type your password'
+                                    placeholder='Type your password min 6 character'
                                     required
                                 />
                             </FormGroup>
