@@ -6,13 +6,17 @@ import DeleteLogo from "../../assets/images/fi_trash-2.svg";
 import AddLogo from "../../assets/images/fi_plus.svg";
 import "./style.scss";
 import Modal from "../AdminDeleteModal/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { testFetchCar } from "../../redux/actions/dataCarList";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
+  const [testCarData, setTestCarData] = useState([])
   const [id, setId] = useState();
   const [name, setName] = useState("");
   const [carFilterSearch, setCarFilterSearch] = useState([]);
   const [categoryClicked, setCategoryClicked] = useState(false);
+  
 
   const handleSearch = (e) => {
     setName(e.target.value);
@@ -20,6 +24,11 @@ const AdminCarList = () => {
       setCarFilterSearch([]);
     }
   };
+
+  // Redux Testing
+  const dispatch = useDispatch();
+  const { carList } = useSelector((state) => state);
+
   const fetchCar = async () => {
     try {
       const token = localStorage.getItem("admin-token");
@@ -87,12 +96,14 @@ const AdminCarList = () => {
 
   useEffect(() => {
     fetchCar();
+    dispatch(testFetchCar())
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="car-list">
+      {console.log("Car-List Redux", carList)}
       <div className="title">
         <h1>List Car</h1>
         <button>
