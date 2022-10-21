@@ -30,7 +30,11 @@ const Navbar = ({navList}) => {
                                     <a href={item.url} offset={-70} onClick={handleSideBar}>{item.title}</a>
                                 ))
                             }
+                            <LinkHome to='/login'>
+                                <button className='btn-login'>Login</button>
+                            </LinkHome>
                         </nav>
+                        
                         <div className='hamburger-menu d-flex d-lg-none flex-column justify-content-between' onClick={handleSideBar}>
                             <span />
                             <span />
