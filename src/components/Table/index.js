@@ -48,6 +48,15 @@ const Table = () => {
   //   // eslint-disable-next-line
   // }, []);
 
+  const rowIndexTemplate = (rowData, props) => {
+    let index = parseInt(props.rowIndex + 1, 10);
+    return (
+      <React.Fragment>
+        <span>{index}</span>
+      </React.Fragment>
+    );
+  };
+
   const onCustomPage1 = (event) => {
     setFirst1(event.first);
     setRows1(event.rows);
@@ -217,7 +226,7 @@ const Table = () => {
           onPage={onCustomPage1}
           responsiveLayout="scroll"
         >
-          <Column field="id" header="No" sortable></Column>
+          <Column field="Index" header="" body={rowIndexTemplate}></Column>
           <Column field="User.email" header="User Email" sortable></Column>
           <Column field="CarId" header="Car" sortable></Column>
           <Column

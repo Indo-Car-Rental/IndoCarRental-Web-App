@@ -29,7 +29,12 @@ const Dashboard = () => {
         <div className="content">
           <SectionTitle title={"Rental Car Data Visualization"} />
           <CarsChart />
-          <Table />
+          <div className="data-table">
+            <h5>Dashboard</h5>
+            <SectionTitle title={"List Order"} />
+            <Table />
+          </div>
+          
         </div>
       </main>
     </div>
