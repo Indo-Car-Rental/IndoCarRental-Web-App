@@ -41,5 +41,17 @@ main{
     }
     .content{
         width: calc(100% - 25px);
+
+        .data-table {
+            h5 {
+                color: #000;
+                margin: 20px 0;
+            }
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+        }
     }
 }

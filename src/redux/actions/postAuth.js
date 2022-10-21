@@ -21,3 +21,17 @@ export const postLoginAdmin = (payload) => (dispatch) => {
       });
     });
 };
+
+export const postLogin = (payload) => (dispatch) => {
+  axios
+    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login", payload)
+    .then((res) => {
+      localStorage.setItem("access_token", res.data.access_token);
+      // localStorage.getItem(res.data.access_token);
+      dispatch({
+        type: TYPES.POST_LOGIN,
+        payload: res.data.access_token,
+      });
+    })
+    .catch((err) => console.log(err));
+};

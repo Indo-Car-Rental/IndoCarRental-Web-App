@@ -3,16 +3,26 @@ import './style.scss';
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkHome } from "react-router-dom";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ButtonLogin from '../ButtonLogin';
 
 const Navbar = ({navList}) => {
     const [showSideBar, setShowSideBar] = useState(false);
+    const { status } = useSelector((state) => state);
 
     const handleSideBar = () =>{
         setShowSideBar(!showSideBar);
     }
 
+    const displayButton = () => {
+        if(!!status.tokenLogin) {
+            return true
+        }
+    }
+
     return (
         <header id='navbar' sidebar={ !showSideBar ? 'false' : 'true' }>
+            
             <Container>
                 <Row>
                     <div className='wrapper d-flex justify-content-between align-items-center'>
@@ -30,7 +40,9 @@ const Navbar = ({navList}) => {
                                     <a href={item.url} offset={-70} onClick={handleSideBar}>{item.title}</a>
                                 ))
                             }
+                            {displayButton() ?  null : <ButtonLogin/>}
                         </nav>
+                        
                         <div className='hamburger-menu d-flex d-lg-none flex-column justify-content-between' onClick={handleSideBar}>
                             <span />
                             <span />

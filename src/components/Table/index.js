@@ -11,7 +11,7 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../../redux/action/dataAction";
+import { getData } from "../../redux/actions/dataAction";
 import axios from "axios";
 import './style.scss'
 
@@ -28,11 +28,16 @@ const Table = () => {
   // Versi Axios
   const [data, setData] = useState([]);
   useEffect(() => {
+    const accessToken = localStorage.getItem('admin-token');
     axios
-    .get("https://bootcamp-rent-car.herokuapp.com/admin/order")
+    .get("https://bootcamp-rent-cars.herokuapp.com/admin/v2/order", {
+      headers: {
+        "access_token": accessToken
+      }
+    })
     .then((res) => {
-      console.log("res", res);
-      setData(res.data)
+      console.log("res", res.data.orders);
+      setData(res.data.orders)
     });
   }, [])
 
@@ -42,6 +47,15 @@ const Table = () => {
   //   dispatch(getData());
   //   // eslint-disable-next-line
   // }, []);
+
+  const rowIndexTemplate = (rowData, props) => {
+    let index = parseInt(props.rowIndex + 1, 10);
+    return (
+      <React.Fragment>
+        <span>{index}</span>
+      </React.Fragment>
+    );
+  };
 
   const onCustomPage1 = (event) => {
     setFirst1(event.first);
@@ -212,7 +226,7 @@ const Table = () => {
           onPage={onCustomPage1}
           responsiveLayout="scroll"
         >
-          <Column field="id" header="No" sortable></Column>
+          <Column field="Index" header="" body={rowIndexTemplate}></Column>
           <Column field="User.email" header="User Email" sortable></Column>
           <Column field="CarId" header="Car" sortable></Column>
           <Column
