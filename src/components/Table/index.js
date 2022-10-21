@@ -11,7 +11,7 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../../redux/action/dataAction";
+import { getData } from "../../redux/actions/dataAction";
 import axios from "axios";
 import './style.scss'
 

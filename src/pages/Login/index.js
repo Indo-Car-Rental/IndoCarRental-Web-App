@@ -3,7 +3,7 @@ import "./style.scss";
 import { AiOutlineCar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { postLogin } from "../../redux/action/postAuth";
+import { postLogin } from "../../redux/actions/postAuth";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
