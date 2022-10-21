@@ -54,7 +54,7 @@ const Register = () => {
         }
 
         axios
-        .post('https://bootcamp-rent-car.herokuapp.com/customer/auth/register', payload)
+        .post('https://bootcamp-rent-cars.herokuapp.com/customer/auth/register', payload)
         .then((response) => {
             setRole(response.data)
             setTimeout(() => {
