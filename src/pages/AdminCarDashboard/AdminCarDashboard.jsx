@@ -5,6 +5,8 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import "./style.scss";
+import Modal from "../../components/AdminDeleteModal/Modal";
+import { useState } from "react";
 
 const AdminCarDashboard = () => {
   const page = "cars";
@@ -12,6 +14,8 @@ const AdminCarDashboard = () => {
   const props = {
     page,
   };
+  const [openModal, setOpenModal] = useState(false);
+  const [id, setId] = useState();
   return (
     <div>
       <NavbarAdmin {...props} />
@@ -28,6 +32,7 @@ const AdminCarDashboard = () => {
           <AdminCarList {...props} />
         </div>
       </main>
+      {openModal && <Modal modalStatus={setOpenModal} idStatus={id} />}
     </div>
   );
 };

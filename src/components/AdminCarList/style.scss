@@ -38,7 +38,7 @@
 .category {
   display: flex;
   gap: 16px;
-  .all-category {
+  button {
     box-sizing: border-box;
 
     /* Auto layout */
@@ -49,14 +49,60 @@
     padding: 8px 12px;
     gap: 10px;
 
-    width: 42px;
+    width: 102px;
     height: 36px;
-    background: #cfd4ed;
+    background: #ffffff;
+    border: 1px solid #aeb7e1;
+    border-radius: 2px;
+    color: #aeb7e1;
+  }
+  .active {
     border: 1px solid #0d28a6;
     border-radius: 2px;
+    background: #cfd4ed !important;
+    color: #0d28a6;
+  }
+
+  .all-cars {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 10px;
+
+    width: 102px;
+    height: 36px;
+    background: #ffffff;
+    border: 1px solid #aeb7e1;
+    border-radius: 2px;
+    color: #aeb7e1;
+  }
+
+  .small {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #aeb7e1;
+    border-radius: 2px;
+    color: #aeb7e1;
+
+    width: 102px;
+    height: 36px;
   }
 }
-.category2 {
+
+.medium {
   box-sizing: border-box;
 
   /* Auto layout */
@@ -66,23 +112,15 @@
   align-items: center;
   padding: 8px 12px;
   gap: 10px;
+  background: #ffffff;
+  border: 1px solid #aeb7e1;
+  border-radius: 2px;
+  color: #aeb7e1;
 
   width: 102px;
   height: 36px;
-
-  /* Neutral/10
-
-FFFFFF
-*/
-  background: #ffffff;
-  /* Primary/DarkBlue/02
-
-AEB7E1
-*/
-  border: 1px solid #aeb7e1;
-  border-radius: 2px;
 }
-.category3 {
+.large {
   box-sizing: border-box;
 
   /* Auto layout */
@@ -92,47 +130,12 @@ AEB7E1
   align-items: center;
   padding: 8px 12px;
   gap: 10px;
-
-  width: 102px;
-  height: 36px;
-
-  /* Neutral/10
-
-FFFFFF
-*/
   background: #ffffff;
-  /* Primary/DarkBlue/02
-
-AEB7E1
-*/
   border: 1px solid #aeb7e1;
   border-radius: 2px;
-}
-.category4 {
-  box-sizing: border-box;
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 12px;
-  gap: 10px;
-
+  color: #aeb7e1;
   width: 102px;
   height: 36px;
-
-  /* Neutral/10
-
-FFFFFF
-*/
-  background: #ffffff;
-  /* Primary/DarkBlue/02
-
-AEB7E1
-*/
-  border: 1px solid #aeb7e1;
-  border-radius: 2px;
 }
 
 .car-list-container {

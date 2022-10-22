@@ -48,7 +48,13 @@ const Modal = ({ modalStatus, idStatus }) => {
           >
             Ya
           </button>
-          <button className="cancel-button" onClick={() => modalStatus(false)}>
+          <button
+            className="cancel-button"
+            onClick={() => {
+              modalStatus(false);
+              document.body.style.overflow = "unset";
+            }}
+          >
             Tidak
           </button>
         </div>

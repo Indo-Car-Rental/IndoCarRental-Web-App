@@ -7,99 +7,57 @@ import AddLogo from "../../assets/images/fi_plus.svg";
 import "./style.scss";
 import Modal from "../AdminDeleteModal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { testFetchCar } from "../../redux/actions/dataCarList";
+import {
+  testFetchCar,
+  FetchCarSmall,
+  FetchCarMedium,
+  FetchCarLarge,
+} from "../../redux/actions/dataCarList";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
-  const [testCarData, setTestCarData] = useState([])
   const [id, setId] = useState();
-  const [name, setName] = useState("");
-  const [carFilterSearch, setCarFilterSearch] = useState([]);
-  const [categoryClicked, setCategoryClicked] = useState(false);
-  
-
-  const handleSearch = (e) => {
-    setName(e.target.value);
-    if (e.target.value.length === 0) {
-      setCarFilterSearch([]);
-    }
-  };
+  const [isActive, setActive] = useState(1);
 
   // Redux Testing
   const dispatch = useDispatch();
   const { carList } = useSelector((state) => state);
 
-  const fetchCar = async () => {
-    try {
-      const token = localStorage.getItem("admin-token");
-      const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car`,
-        {
-          headers: { access_token: `${token}` },
-        }
-      );
-      setCarData(res.data.cars);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchCar = () => {
+    setCarData(carList.cars);
+    setActive(1);
   };
 
-  const fetchCarSmall = async () => {
-    try {
-      const token = localStorage.getItem("admin-token");
-      const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=small`,
-        {
-          headers: { access_token: `${token}` },
-        }
-      );
-      setCarData(res.data.cars);
-      setCategoryClicked((categoryClicked) => !categoryClicked);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchCarSmall = () => {
+    setCarData(carList.small);
+    setActive(2);
   };
 
-  const fetchCarMedium = async () => {
-    try {
-      const token = localStorage.getItem("admin-token");
-      const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=medium`,
-        {
-          headers: { access_token: `${token}` },
-        }
-      );
-      setCarData(res.data.cars);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchCarMedium = () => {
+    setCarData(carList.medium);
+    setActive(3);
   };
 
-  const fetchCarLarge = async () => {
-    try {
-      const token = localStorage.getItem("admin-token");
-      const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car?category=large`,
-        {
-          headers: { access_token: `${token}` },
-        }
-      );
-      setCarData(res.data.cars);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const props = {
-    handleSearch,
+  const fetchCarLarge = () => {
+    setCarData(carList.large);
+    setActive(4);
   };
 
   useEffect(() => {
-    fetchCar();
-    dispatch(testFetchCar())
+    // fetchCar(dispatch(testFetchCar()));
+    testFetchCar();
+    fetchCarSmall();
+    fetchCarMedium();
+    fetchCarLarge();
+    setActive(1);
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
+
+  const handleModal = () => {
+    setOpenModal(true);
+    document.body.style.overflow = "hidden";
+  };
 
   return (
     <div className="car-list">
@@ -111,16 +69,28 @@ const AdminCarList = () => {
         </button>
       </div>
       <div className="category">
-        <button className="all-category" onClick={() => fetchCar()}>
+        <button
+          className={isActive === 1 ? "active" : ""}
+          onClick={() => fetchCar(testFetchCar())}
+        >
           All
         </button>
-        <button className="category2" onClick={() => fetchCarSmall()}>
+        <button
+          className={isActive === 2 ? "active" : ""}
+          onClick={() => fetchCarSmall(dispatch(FetchCarSmall()))}
+        >
           2-4 People
         </button>
-        <button className="category3" onClick={() => fetchCarMedium()}>
+        <button
+          className={isActive === 3 ? "active" : ""}
+          onClick={() => fetchCarMedium(dispatch(FetchCarMedium))}
+        >
           4-6 People
         </button>
-        <button className="category4" onClick={() => fetchCarLarge()}>
+        <button
+          className={isActive === 4 ? "active" : ""}
+          onClick={() => fetchCarLarge(dispatch(FetchCarLarge))}
+        >
           6-8 People
         </button>
       </div>
@@ -146,9 +116,9 @@ const AdminCarList = () => {
                 <div
                   className="delete-button"
                   onClick={() => {
-                    setOpenModal(true);
+                    handleModal();
                     setId(item.id);
-                    document.body.style.overflow = "hidden";
+                    // document.body.style.overflow = "hidden";
                   }}
                 >
                   <img src={DeleteLogo} />

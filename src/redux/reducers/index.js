@@ -3,13 +3,12 @@ import authReducer from "./authReducer";
 import carListReducer from "./carListReducer";
 import dataReducer from "./dataReducer";
 import sideBarReducer from "./sideBarReducers";
-import carReducer from "./carReducer";
 
 const rootReducer = combineReducers({
   dataOrder: dataReducer,
   status: authReducer,
   sideBar: sideBarReducer,
-  carList: carListReducer
+  carList: carListReducer,
 });
 
 export default rootReducer;
