@@ -12,7 +12,16 @@ const authReducer = (state=initialState, action) => {
         case TYPES.POST_LOGIN:
             return {
                 ...state,
-                tokenLogin: action.payload
+                tokenLogin: action.payload,
+                isLoggin: true
+            }
+        
+        case TYPES.POST_LOGIN_FAILED:
+            return {
+                ...state,
+                tokenLogin: null,
+                isLoggin: false,
+                loginErrorStatus: action.payload,
             }
             
         case TYPES.POST_LOGIN_ADMIN:

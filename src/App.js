@@ -8,7 +8,6 @@ import Register from "./pages/Register";
 import EditCar from "./pages/Admin/EditCar";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./HOC/ProtectedRoute";
@@ -39,7 +38,6 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/admin/edit-car" element={<EditCar />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
         <Route
           path="admin/login"
           element={<AdminLogin setCmsIsLogin={setCmsIsLogin} />}

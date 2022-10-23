@@ -6,7 +6,7 @@ import sideBarReducer from "./sideBarReducers";
 const rootReducer = combineReducers({
     dataOrder: dataReducer,
     status: authReducer,
-    sideBar: sideBarReducer
+    sideBar: sideBarReducer,
 });
 
 export default rootReducer;
