@@ -37,7 +37,7 @@ const Navbar = ({navList}) => {
                             {
                                 navList.map((item) => (
                                     // <LinkScroll to={item.url} offset={-70} onClick={handleSideBar}>{item.title}</LinkScroll>
-                                    <a href={item.url} offset={-70} onClick={handleSideBar}>{item.title}</a>
+                                    <a href={item.url} offset={-70} onClick={handleSideBar} key={item.url}>{item.title}</a>
                                 ))
                             }
                             {displayButton() ?  null : <ButtonLogin/>}
