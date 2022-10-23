@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import EditLogo from "../../assets/images/fi_edit.svg";
 import DeleteLogo from "../../assets/images/fi_trash-2.svg";
 import AddLogo from "../../assets/images/fi_plus.svg";
+import UserLogo from "../../assets/images/fi_users.png";
+import ClockLogo from "../../assets/images/fi_clock.png";
 import "./style.scss";
 import Modal from "../AdminDeleteModal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  testFetchCar,
-  FetchCarSmall,
-  FetchCarMedium,
-  FetchCarLarge,
-} from "../../redux/actions/dataCarList";
+import { testFetchCar } from "../../redux/actions/dataCarList";
 import TYPES from "../../redux/types";
 
 const AdminCarList = () => {
@@ -37,28 +33,7 @@ const AdminCarList = () => {
     dispatch(testFetchCar());
   };
 
-  const fetchCar = () => {
-    setCarData(carList.cars);
-    setActive(1);
-  };
-
-  const fetchCarSmall = () => {
-    setCarData(carList.small);
-    setActive(2);
-  };
-
-  const fetchCarMedium = () => {
-    setCarData(carList.medium);
-    setActive(3);
-  };
-
-  const fetchCarLarge = () => {
-    setCarData(carList.large);
-    setActive(4);
-  };
-
   useEffect(() => {
-    // fetchCar(dispatch(testFetchCar()));
     dispatch(testFetchCar());
     setActive(1);
   }, []);
@@ -115,12 +90,20 @@ const AdminCarList = () => {
                 </div>
                 <div className="content-desc">
                   <p>{item.name}</p>
-                  <p>Rp {item.price} / hari</p>
-                  <p>{item.category}</p>
+                  <p>
+                    <b>Rp. {item.price} / hari</b>
+                  </p>
+                  <p className="card-content-category">
+                    <img src={UserLogo} />
+                    {item.category}
+                  </p>
                   <p>
                     {item.start_rent_at} - {item.finish_rent_at}
                   </p>
-                  <p>{item.updatedAt}</p>
+                  <p className="card-content-update">
+                    <img src={ClockLogo} />
+                    {item.updatedAt}
+                  </p>
                 </div>
               </div>
               <div className="action-button">
@@ -133,11 +116,15 @@ const AdminCarList = () => {
                   }}
                 >
                   <img src={DeleteLogo} />
-                  <a>Delete</a>
+                  <a>
+                    <b>Delete</b>
+                  </a>
                 </div>
                 <div className="edit-button">
                   <img src={EditLogo} />
-                  <a>Edit</a>
+                  <a>
+                    <b>Edit</b>
+                  </a>
                 </div>
               </div>
             </div>

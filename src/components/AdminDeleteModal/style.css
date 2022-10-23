@@ -90,6 +90,11 @@
   background: #0d28a6;
   border-radius: 2px;
   color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  background-color: red;
 }
 
 .cancel-button {
@@ -107,4 +112,11 @@
   border: 1px solid #0d28a6;
   border-radius: 2px;
   color: #0d28a6;
+  transition: 0.2s ease-in-out;
+}
+
+.cancel-button:hover {
+  background-color: #5cb85f;
+  border: 1px solid #5cb85f;
+  color: white;
 }

@@ -9,10 +9,6 @@ const Modal = ({ modalStatus, idStatus }) => {
   const dispatch = useDispatch();
   if (!modalStatus) return null;
 
-  // const refreshPage = () => {
-
-  // };
-
   const handleDelete = (id) => {
     const token = localStorage.getItem("admin-token");
     console.log(token);
@@ -50,7 +46,7 @@ const Modal = ({ modalStatus, idStatus }) => {
             className="delete-button"
             onClick={() => handleDelete(idStatus)}
           >
-            Ya
+            <b>Ya</b>
           </button>
           <button
             className="cancel-button"
@@ -61,7 +57,7 @@ const Modal = ({ modalStatus, idStatus }) => {
               }
             }}
           >
-            Tidak
+            <b>Tidak</b>
           </button>
         </div>
       </div>
