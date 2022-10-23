@@ -1,10 +1,12 @@
 import "./style.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { testFetchCar, FetchCarSmall } from "../../redux/actions/dataCarList";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import CarsChart from "../../components/CarsChart";
 import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
-import Table from "../../components/Table"
+import Table from "../../components/Table";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const page = "dashboard";
@@ -13,6 +15,12 @@ const Dashboard = () => {
   const props = {
     page,
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(testFetchCar());
+  }, []);
 
   return (
     <div>
@@ -34,7 +42,6 @@ const Dashboard = () => {
             <SectionTitle title={"List Order"} />
             <Table />
           </div>
-          
         </div>
       </main>
     </div>

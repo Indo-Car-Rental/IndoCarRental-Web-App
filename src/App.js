@@ -15,6 +15,7 @@ import Formnewcar from "./pages/Formnewcar";
 import Payment from "./pages/Payment";
 import PaymentUpload from "./pages/PaymentUpload";
 import PaymentTiket from "./pages/PaymentTiket";
+import AdminCarDashboard from "./pages/AdminCarDashboard/AdminCarDashboard";
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -48,6 +49,14 @@ const App = () => {
           element={
             <ProtectedRoute cmsIsLogin={cmsIsLogin}>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="admin/cars"
+          element={
+            <ProtectedRoute cmsIsLogin={cmsIsLogin}>
+              <AdminCarDashboard />
             </ProtectedRoute>
           }
         />

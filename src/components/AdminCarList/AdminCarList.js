@@ -1,36 +1,53 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
-import { cardWhyUs } from "../../const/staticData";
-import logo from "../../assets/images/car-banner.png";
 import EditLogo from "../../assets/images/fi_edit.svg";
 import DeleteLogo from "../../assets/images/fi_trash-2.svg";
 import AddLogo from "../../assets/images/fi_plus.svg";
+import UserLogo from "../../assets/images/fi_users.png";
+import ClockLogo from "../../assets/images/fi_clock.png";
 import "./style.scss";
 import Modal from "../AdminDeleteModal/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { testFetchCar } from "../../redux/actions/dataCarList";
+import TYPES from "../../redux/types";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
+  const [id, setId] = useState();
+  const [isActive, setActive] = useState(1);
 
-  const fetchCar = async () => {
-    try {
-      const res = await axios.get(
-        `https://bootcamp-rent-cars.herokuapp.com/admin/v2/car`
-      );
-      setCarData(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+  // Redux Testing
+  const dispatch = useDispatch();
+  const { carList } = useSelector((state) => state);
+
+  const handleChangeCategory = (category, activeButton) => {
+    setActive(activeButton);
+    dispatch({
+      type: TYPES.CHANGE_CATEGORY_CAR,
+      payload: category,
+    });
+    dispatch({
+      type: TYPES.SEARCH_NAME_CAR,
+      payload: "",
+    });
+    dispatch(testFetchCar());
   };
 
   useEffect(() => {
-    fetchCar();
+    dispatch(testFetchCar());
+    setActive(1);
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
 
+  const handleModal = () => {
+    setOpenModal(true);
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <div className="car-list">
+      {console.log("Car-List Redux", carList)}
       <div className="title">
         <h1>List Car</h1>
         <button>
@@ -38,46 +55,81 @@ const AdminCarList = () => {
         </button>
       </div>
       <div className="category">
-        <button className="all-category">All</button>
-        <button className="category2">2-4 People</button>
-        <button className="category3">4-6 People</button>
-        <button className="category4">6-8 People</button>
+        <button
+          className={isActive === 1 ? "active" : ""}
+          onClick={() => handleChangeCategory("", 1)}
+        >
+          All
+        </button>
+        <button
+          className={isActive === 2 ? "active" : ""}
+          onClick={() => handleChangeCategory("small", 2)}
+        >
+          2-4 People
+        </button>
+        <button
+          className={isActive === 3 ? "active" : ""}
+          onClick={() => handleChangeCategory("medium", 3)}
+        >
+          4-6 People
+        </button>
+        <button
+          className={isActive === 4 ? "active" : ""}
+          onClick={() => handleChangeCategory("large", 4)}
+        >
+          6-8 People
+        </button>
       </div>
       <div className="car-list-container">
-        {carData.length > 0 &&
-          carData.map((item, key) => (
+        {carList?.cars.length > 0 &&
+          carList?.cars.map((item, key) => (
             <div className="car-card-container" key={key}>
               <div className="card-content">
                 <div className="card-image">
                   <img src={item.image} alt="" />
                 </div>
                 <div className="content-desc">
-                  <p>Nama/Tipe Mobil</p>
-                  <p>Rp {item.price} / hari</p>
-                  <p>{item.category}</p>
-                  <p>Start Rent - Finish Rent</p>
-                  <p>Updated at</p>
+                  <p>{item.name}</p>
+                  <p>
+                    <b>Rp. {item.price} / hari</b>
+                  </p>
+                  <p className="card-content-category">
+                    <img src={UserLogo} />
+                    {item.category}
+                  </p>
+                  <p>
+                    {item.start_rent_at} - {item.finish_rent_at}
+                  </p>
+                  <p className="card-content-update">
+                    <img src={ClockLogo} />
+                    {item.updatedAt}
+                  </p>
                 </div>
               </div>
               <div className="action-button">
                 <div
                   className="delete-button"
                   onClick={() => {
-                    setOpenModal(true);
-                    document.body.style.overflow = "hidden";
+                    handleModal();
+                    setId(item.id);
+                    // document.body.style.overflow = "hidden";
                   }}
                 >
                   <img src={DeleteLogo} />
-                  <a>Delete</a>
+                  <a>
+                    <b>Delete</b>
+                  </a>
                 </div>
                 <div className="edit-button">
                   <img src={EditLogo} />
-                  <a>Edit</a>
+                  <a>
+                    <b>Edit</b>
+                  </a>
                 </div>
               </div>
             </div>
           ))}
-        {openModal && <Modal modalStatus={setOpenModal} />}
+        {openModal && <Modal modalStatus={setOpenModal} idStatus={id} />}
       </div>
     </div>
   );
