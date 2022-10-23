@@ -73,9 +73,6 @@ const Cars = () => {
       setMaxPrice(null);
     }
   }
-  
-  console.log("min", minPrice);
-  console.log("max", maxPrice);
 
   const handleSearch = () => {
     if (data.length === 0) {
