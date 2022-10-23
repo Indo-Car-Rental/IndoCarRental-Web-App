@@ -1,0 +1,13 @@
+.formEdit{
+    margin-top: 20px;
+    .form-wrap{
+        display: flex;
+        flex-direction: column;
+        height: 65vh;
+        justify-content: space-between;
+        .form-white-box{
+            background: #fff;
+            padding: 30px;
+        }
+    }
+}

@@ -37,7 +37,7 @@ const App = () => {
         <Route path="/carimobil" element={<Cars />} />
         <Route path="/detailmobil/:id" element={<DetailCar />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin/edit-car" element={<EditCar />} />
+        <Route path="/admin/edit-car/:id" element={<EditCar />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route
@@ -52,6 +52,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        {/* <Route
+          path="admin/edit-car"
+          element={
+            <ProtectedRoute cmsIsLogin={cmsIsLogin}>
+              <EditCar />
+            </ProtectedRoute>
+          }
+        >
+        </Route> */}
         <Route path="/admin/form-add-new-car" element={<Formnewcar />} />
         <Route path="/pembayaran" element={<Payment />} />
         <Route path="/konfirmasi-pembayaran" element={<PaymentUpload />} />
