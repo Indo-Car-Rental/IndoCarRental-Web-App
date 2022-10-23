@@ -9,10 +9,11 @@ import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import DetailTiketContent from '../../components/DetailTiketContent';
 
-const PaymentUpload = () => {
+const PaymentTiket = () => {
     const bannerContent = false;
-    const page = 'paymentupload';
+    const page = 'tiket';
 
     const { id } = useParams();
     const id_order = id;
@@ -49,8 +50,7 @@ const PaymentUpload = () => {
         page,
         bank,
         id_order,
-        dataOrder,
-        formatRupiah
+        dataOrder
     }
 
     return (
@@ -58,10 +58,10 @@ const PaymentUpload = () => {
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />
-            <DetailPaymentUploadContent {...props} />
+            <DetailTiketContent {...props} />
             <Footer />
         </div>
     );
 }
  
-export default PaymentUpload;
+export default PaymentTiket;

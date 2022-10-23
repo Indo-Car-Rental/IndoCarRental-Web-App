@@ -11,13 +11,21 @@ import {
 } from "reactstrap";
 import "./style.scss";
 import Countdown from 'react-countdown';
+import { uploadBuktiPembayaran } from "../../redux/actions/paymentAction";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-const DetailPaymentUploadContent = () => {
+const DetailPaymentUploadContent = (props) => {
+  const {formatRupiah, id_order, dataOrder} = props;
   const [copyNoRek, setCopyNoRek] = useState(false);
   const [copyTotalPrice, setCopyTotalPrice] = useState(false);
   const [activeTab, setActiveTab] = useState('1');
   const [uploadComponent, setUploadComponent] = useState(false);
   const [fileUpload, setFileUpload] = useState();
+  const [files, setFiles] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { payment } = useSelector((state) => state);
 
   const handleCopyNoRek = (param) => {
     navigator.clipboard.writeText(param);
@@ -60,9 +68,27 @@ const DetailPaymentUploadContent = () => {
   }
 
   const handleImageUpload = (e) => {
-    console.log(e.target.files);
+    e.preventDefault();
     setFileUpload(URL.createObjectURL(e.target.files[0]));
+    setFiles(e.target.files[0]);
   }
+
+  const total_harga = props.dataOrder.total_price;
+  const format_total_harga = formatRupiah(!!total_harga ? total_harga : 0);
+
+  const handleUploadBukti = () =>{
+    let formData = new FormData();
+		formData.append('slip', files);
+
+    const payload = {
+      formData
+    }
+
+    dispatch(uploadBuktiPembayaran(payload, id_order));
+    navigate(`/tiket/${id_order}`);
+  }
+
+  console.log(dataOrder);
 
   return (
     <section id="detailpaymentupload">
@@ -89,9 +115,9 @@ const DetailPaymentUploadContent = () => {
                 </strong>
 
                 <div className="bank-title">
-                    <div>BCA</div>
+                    <div className='text-capitalize'>{props.bank}</div>
                     <div>
-                        <p>BCA Transfer</p>
+                        <p>{(<><span className='text-capitalize'>{props.bank}</span> Transfer</>)}</p>
                         <p>a.n Binar Car Rental</p>
                     </div>
                 </div>
@@ -108,8 +134,8 @@ const DetailPaymentUploadContent = () => {
                     <div className="input-copy-wrapper">
                         <p>Total Bayar</p>
                         <div className="copy">
-                          <input type="text" value="Rp 3.500.000" disabled />
-                          <i className="fa-regular fa-copy" onClick={() => handleCopyTotalPrice(3500000)}>
+                          <input type="text" value={'Rp. '+format_total_harga} disabled />
+                          <i className="fa-regular fa-copy" onClick={() => handleCopyTotalPrice(total_harga)}>
                             {!!copyTotalPrice &&(<p className="copy-text">tersalin</p>)}
                           </i>
                         </div>
@@ -239,9 +265,11 @@ const DetailPaymentUploadContent = () => {
                         }
                       </div>
                     </div>
-                    <div className="lanjut-button">
-                      <button>Upload</button>
-                    </div>
+                    {!!fileUpload && (
+                        <div className="lanjut-button">
+                          <button onClick={handleUploadBukti}>Upload</button>
+                        </div>
+                    )}
                   </>
                 )}
                 

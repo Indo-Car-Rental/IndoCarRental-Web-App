@@ -1,8 +1,11 @@
 import TYPES from "../types"
 
+const customerToken = localStorage.getItem("access_token");
+const tokenLogin = customerToken ? customerToken : "";
+
 const initialState = {
     token: "",
-    tokenLogin: "",
+    tokenLogin: tokenLogin,
     tokenLoginAdmin: "",
     loginErrorStatus: ""
 }

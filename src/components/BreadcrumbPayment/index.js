@@ -7,10 +7,20 @@ const BreadcrumbPayment = (props) => {
             <Container>
                 <div className='breadcrumb-wrapper'>
                     <div  className='breadcrumb-left'>
-                        <a href='/'><i class="fa-solid fa-arrow-left"></i></a> 
+                        <a href='/'><i className="fa-solid fa-arrow-left"></i></a> 
                         <div>
-                            <p>{props.bank ? 'BCA Transfer' : 'Pembayaran'}</p>
-                            {props.bank ? (<p>Order ID: 86754231</p>) : ''}
+                            {
+                                props.page === 'tiket' ? (
+                                    <>
+                                        <p>Tiket</p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <p>{props.bank ? (<><span className='text-capitalize'>{props.bank}</span> Transfer</>) : 'Pembayaran'}</p>
+                                    </>
+                                )
+                            }
+                            {props.bank ? (<p>Order ID: {props.id_order}</p>) : ''}
                         </div>
                     </div>
                     <div className='breadcrumb-right'>

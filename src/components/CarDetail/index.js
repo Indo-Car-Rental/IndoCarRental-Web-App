@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Row,
@@ -10,12 +10,16 @@ import {
 import "./style.scss";
 import "rsuite/styles/index.less";
 import CalendarRange from "../CalendarRange/CalendarRange";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { datePayment } from "../../redux/actions/paymentAction";
 
 const CarDetail = (props) => {
-  const { car, formatRupiah } = props;
+  const { car, formatRupiah, checkCustomerLogin } = props;
   const [tanggal, getTanggal] = useState(false);
   const [totHarga, getTotHarga] = useState(1);
+  const [dateRange, setDateRange] = useState("");
+  const dispatch = useDispatch();
   const handleClick = (e) => {
     if (e == null) {
       getTanggal(false);
@@ -24,6 +28,7 @@ const CarDetail = (props) => {
       getTanggal(true);
       const diffDays = parseInt((e[1] - e[0]) / (1000 * 60 * 60 * 24), 10) + 1;
       getTotHarga(diffDays);
+      setDateRange(e);
     }
     // console.log(e[0]);
     // console.log(e[1]);
@@ -32,6 +37,19 @@ const CarDetail = (props) => {
   };
 
   // const [time, setTime] = useState(value);
+
+  const navigate = useNavigate();
+
+  const handlePembayaran = () => {
+    const payload = {
+      dateRange,
+      car,
+      totHarga
+    }
+    dispatch(datePayment(payload));
+    navigate('/pembayaran');
+  }
+
   return (
     <section id="cardetail">
       <Container>
@@ -120,10 +138,12 @@ const CarDetail = (props) => {
                       <i className="fa-solid fa-user-group"></i>{" "}
                       {!!car.category ? car.category : "Kategori"}
                     </p>
-                    <div className="calendar">
-                      <p>Tentukan lama sewa mobil (max. 7 hari)</p>
-                      <CalendarRange handleClick={handleClick} />
-                    </div>
+                    {!!checkCustomerLogin &&(
+                      <div className="calendar">
+                        <p>Tentukan lama sewa mobil (max. 7 hari)</p>
+                        <CalendarRange handleClick={handleClick} />
+                      </div>
+                    )}
                     <div className="car-price">
                       <p>Total</p>
                       <p>
@@ -131,13 +151,11 @@ const CarDetail = (props) => {
                         {formatRupiah(!!car.price ? car.price * totHarga : 0)}
                       </p>
                     </div>
+                    {!!checkCustomerLogin &&(
                     <div className="lanjut-button">
-                      {tanggal ? (
-                        <button>Lanjutkan Pembayaran</button>
-                      ) : (
-                        <div></div>
-                      )}
+                      <button disabled={!tanggal ? 'disabled' : ''} onClick={handlePembayaran}>Lanjutkan Pembayaran</button>
                     </div>
+                    )}
                   </>
                 )}
               </div>

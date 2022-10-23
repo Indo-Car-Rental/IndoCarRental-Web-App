@@ -1,7 +1,9 @@
 import './style.scss';
 import { Container, Label, Button } from 'reactstrap';
 
-const DetailPaymentBar = () => {
+const DetailPaymentBar = (props) => {
+    const {car, dateFrom, dateTo} = props;
+
     return (
         <section id='detailpaymentbar'>
             <Container>
@@ -15,7 +17,7 @@ const DetailPaymentBar = () => {
                                 <Label>
                                     Nama/Tipe Mobil 
                                 </Label>
-                                <p>Innova</p>
+                                <p>{car.name}</p>
                             </div>
                         </div>
                         <div className='search-input'>
@@ -23,7 +25,7 @@ const DetailPaymentBar = () => {
                                 <Label>
                                     Kategori
                                 </Label>
-                                <p>6 - 8 orang</p>
+                                <p>{car.category}</p>
                             </div>
                         </div>
                         <div className='search-input'>
@@ -31,7 +33,7 @@ const DetailPaymentBar = () => {
                                 <Label>
                                     Tanggal Mulai Sewa
                                 </Label>
-                                <p>2 Jun 2022</p>
+                                <p>{dateFrom}</p>
                             </div>
                         </div>
                         <div className='search-input'>
@@ -39,7 +41,7 @@ const DetailPaymentBar = () => {
                                 <Label>
                                     Tanggal Akhir Sewa
                                 </Label>
-                                <p>8 Jun 2022</p>
+                                <p>{dateTo}</p>
                             </div>
                         </div>
                     </div>
