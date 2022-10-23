@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Row,
@@ -7,8 +9,33 @@ import {
   AccordionBody,
 } from "reactstrap";
 import "./style.scss";
+import { UploadPayment } from "../../redux/actions/paymentAction";
+import { useNavigate } from "react-router-dom";
 
-const DetailPaymentContent = () => {
+const DetailPaymentContent = (props) => {
+  const {car, dateRange, api_dateFrom, api_dateTo, formatRupiah, totHarga} = props;
+  const [bank, setBank] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const id_car = car.id;
+
+  const { payment } = useSelector((state) => state);
+
+  const handlePayment = () => {
+    const payload = {
+      api_dateFrom,
+      api_dateTo,
+      id_car,
+      bank
+    }
+    dispatch(UploadPayment(payload));
+  }
+
+  if(!!payment.paymentUpload.id){
+    navigate(`/konfirmasi-pembayaran/${payment.paymentUpload.id}`);
+  }
+
   return (
     <section id="cardetail">
       <Container>
@@ -24,21 +51,21 @@ const DetailPaymentContent = () => {
 
                 <ul className="bank_wrapper">
                   <li>
-                    <input type="radio" name="bank" />
+                    <input type="radio" name="bank" onClick={() => setBank('bca')} />
                     <label>
                       <div>BCA</div>
                       BCA Transfer
                     </label>
                   </li>
                   <li>
-                    <input type="radio" name="bank" />
+                    <input type="radio" name="bank" onClick={() => setBank('bni')} />
                     <label>
                       <div>BNI</div>
                       BNI Transfer
                     </label>
                   </li>
                   <li>
-                    <input type="radio" name="bank" />
+                    <input type="radio" name="bank" onClick={() => setBank('mandiri')} />
                     <label>
                       <div>Mandiri</div>
                       Mandiri Transfer
@@ -50,10 +77,10 @@ const DetailPaymentContent = () => {
             <div className="desc-img col-12 col-lg-5">
               <div className="wrapper">
                 <p className="car-name">
-                  Innova
+                  {car.name}
                 </p>
                 <p className="car-category">
-                  <i className="fa-solid fa-user-group"></i> 6-8 orang
+                  <i className="fa-solid fa-user-group"></i> {car.category}
                 </p>
                 <div className="price-detail">
                   <UncontrolledAccordion defaultOpen="1">
@@ -64,7 +91,7 @@ const DetailPaymentContent = () => {
                             <p>Total</p>
                           </strong>
                           <strong>
-                            <p>Rp. 3.500.000</p>
+                            <p>Rp. {formatRupiah(car.price*totHarga)}</p>
                           </strong>
                         </div>
                       </AccordionHeader>
@@ -75,8 +102,8 @@ const DetailPaymentContent = () => {
                         <ul>
                           <li>
                             <div>
-                              <p>Sewa Mobil Rp.500.000 x 7 Hari</p>
-                              <p>Rp 3.500.000</p>
+                              <p>Sewa Mobil Rp. {formatRupiah(car.price)} x {totHarga} Hari</p>
+                              <p>Rp. {formatRupiah(car.price*totHarga)}</p>
                             </div>
                           </li>
                         </ul>
@@ -116,11 +143,11 @@ const DetailPaymentContent = () => {
                 <div className="car-price">
                   <p>Total</p>
                   <p>
-                    Rp 200000
+                    Rp. {formatRupiah(car.price*totHarga)}
                   </p>
                 </div>
                 <div className="lanjut-button">
-                  <button>Lanjutkan Pembayaran</button>
+                  <button onClick={handlePayment}>Lanjutkan Pembayaran</button>
                 </div>
               </div>
             </div>

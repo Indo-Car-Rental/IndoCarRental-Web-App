@@ -42,7 +42,7 @@ const NavbarAdmin = (props) => {
                 <div className="col">
                     <form>
                         <div className="input-group d-flex">
-                            <div class="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></div>
+                            <div className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></div>
                             <input type="text" className="form-control" placeholder="Search" name="" />
                             <button className="btn btn-outline-secondary" type="button">Search</button>
                         </div>

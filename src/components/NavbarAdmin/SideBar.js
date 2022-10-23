@@ -13,11 +13,11 @@ const SideBar = (props) => {
                 </div>
                 <nav>
                     <Link to={`/admin/dashboard`} className={props.page === 'dashboard' ? 'active' : ''}>
-                        <i class="fa-solid fa-house"></i>
+                        <i className="fa-solid fa-house"></i>
                         <p>Dashboard</p>
                     </Link>
                     <Link to={`/admin/cars`} className={props.page === 'cars' ? 'active' : ''}>
-                        <i class="fa-solid fa-truck"></i>
+                        <i className="fa-solid fa-truck"></i>
                         <p>Cars</p>
                     </Link>
                 </nav>

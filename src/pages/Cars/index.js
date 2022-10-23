@@ -22,8 +22,8 @@ const Cars = () => {
 
   useEffect(() => {
     axios
-      .get("https://bootcamp-rent-car.herokuapp.com/admin/car")
-      .then((res) => setData(res.data))
+      .get("https://bootcamp-rent-cars.herokuapp.com/customer/v2/car")
+      .then((res) => setData(res.data.cars))
       .catch((err) => console.log(err));
   }, []);
 

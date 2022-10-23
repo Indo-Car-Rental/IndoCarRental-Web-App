@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import CarDetail from '../../components/CarDetail';
 import './style.scss';
+import { useSelector } from 'react-redux';
 
 const DetailCar = () => {
     const bannerContent = false;
@@ -17,7 +18,7 @@ const DetailCar = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`)
+        axios.get(`https://bootcamp-rent-cars.herokuapp.com/customer/car/${id}`)
         .then((res) => setCar(res.data))
         .catch((err) => console.log(err));
     }, []);
@@ -30,12 +31,17 @@ const DetailCar = () => {
         return result;
     }
 
+    const { status } = useSelector((state) => state)
+
+    const checkCustomerLogin = status.tokenLogin ? true : false;
+
     const props = {
         navList,
         bannerContent,
         disableForm,
         car,
         formatRupiah,
+        checkCustomerLogin
     }
 
     return (

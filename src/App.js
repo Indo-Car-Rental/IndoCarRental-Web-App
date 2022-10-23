@@ -15,6 +15,7 @@ import ProtectedRoute from "./HOC/ProtectedRoute";
 import Formnewcar from "./pages/Formnewcar";
 import Payment from "./pages/Payment";
 import PaymentUpload from "./pages/PaymentUpload";
+import PaymentTiket from "./pages/PaymentTiket";
 
 const App = () => {
   const [cmsIsLogin, setCmsIsLogin] = useState(null);
@@ -54,7 +55,8 @@ const App = () => {
         />
         <Route path="/admin/form-add-new-car" element={<Formnewcar />} />
         <Route path="/pembayaran" element={<Payment />} />
-        <Route path="/konfirmasi-pembayaran" element={<PaymentUpload />} />
+        <Route path="/konfirmasi-pembayaran/:id" element={<PaymentUpload />} />
+        <Route path="/tiket/:id" element={<PaymentTiket />} />
       </Routes>
     </>
   );
