@@ -13,6 +13,7 @@ import {
   FetchCarMedium,
   FetchCarLarge,
 } from "../../redux/actions/dataCarList";
+import TYPES from "../../redux/types";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
@@ -22,6 +23,19 @@ const AdminCarList = () => {
   // Redux Testing
   const dispatch = useDispatch();
   const { carList } = useSelector((state) => state);
+
+  const handleChangeCategory = (category, activeButton) => {
+    setActive(activeButton);
+    dispatch({
+      type: TYPES.CHANGE_CATEGORY_CAR,
+      payload: category,
+    });
+    dispatch({
+      type: TYPES.SEARCH_NAME_CAR,
+      payload: "",
+    });
+    dispatch(testFetchCar());
+  };
 
   const fetchCar = () => {
     setCarData(carList.cars);
@@ -45,10 +59,7 @@ const AdminCarList = () => {
 
   useEffect(() => {
     // fetchCar(dispatch(testFetchCar()));
-    testFetchCar();
-    fetchCarSmall();
-    fetchCarMedium();
-    fetchCarLarge();
+    dispatch(testFetchCar());
     setActive(1);
   }, []);
 
@@ -71,32 +82,32 @@ const AdminCarList = () => {
       <div className="category">
         <button
           className={isActive === 1 ? "active" : ""}
-          onClick={() => fetchCar(testFetchCar())}
+          onClick={() => handleChangeCategory("", 1)}
         >
           All
         </button>
         <button
           className={isActive === 2 ? "active" : ""}
-          onClick={() => fetchCarSmall(dispatch(FetchCarSmall()))}
+          onClick={() => handleChangeCategory("small", 2)}
         >
           2-4 People
         </button>
         <button
           className={isActive === 3 ? "active" : ""}
-          onClick={() => fetchCarMedium(dispatch(FetchCarMedium))}
+          onClick={() => handleChangeCategory("medium", 3)}
         >
           4-6 People
         </button>
         <button
           className={isActive === 4 ? "active" : ""}
-          onClick={() => fetchCarLarge(dispatch(FetchCarLarge))}
+          onClick={() => handleChangeCategory("large", 4)}
         >
           6-8 People
         </button>
       </div>
       <div className="car-list-container">
-        {carData.length > 0 &&
-          carData.map((item, key) => (
+        {carList?.cars.length > 0 &&
+          carList?.cars.map((item, key) => (
             <div className="car-card-container" key={key}>
               <div className="card-content">
                 <div className="card-image">

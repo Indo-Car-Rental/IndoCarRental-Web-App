@@ -2,13 +2,16 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import ModalPic from "../../assets/images/img-BeepBeep.svg";
 import "./style.css";
+import { useDispatch } from "react-redux";
+import { testFetchCar } from "../../redux/actions/dataCarList";
 
 const Modal = ({ modalStatus, idStatus }) => {
+  const dispatch = useDispatch();
   if (!modalStatus) return null;
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
+  // const refreshPage = () => {
+
+  // };
 
   const handleDelete = (id) => {
     const token = localStorage.getItem("admin-token");
@@ -22,7 +25,8 @@ const Modal = ({ modalStatus, idStatus }) => {
         if (res.status === 200) {
           modalStatus(false);
           console.log(res);
-          refreshPage();
+          dispatch(testFetchCar());
+          document.body.style.overflow = "unset";
         }
       });
   };
@@ -51,8 +55,10 @@ const Modal = ({ modalStatus, idStatus }) => {
           <button
             className="cancel-button"
             onClick={() => {
-              modalStatus(false);
-              document.body.style.overflow = "unset";
+              {
+                modalStatus(false);
+                document.body.style.overflow = "unset";
+              }
             }}
           >
             Tidak

@@ -5,6 +5,8 @@ const initialState = {
   small: "",
   medium: "",
   large: "",
+  category: "",
+  name: "",
 };
 
 const carListReducer = (state = initialState, action) => {
@@ -28,6 +30,16 @@ const carListReducer = (state = initialState, action) => {
       return {
         ...state,
         large: action.payload,
+      };
+    case TYPES.CHANGE_CATEGORY_CAR:
+      return {
+        ...state,
+        category: action.payload,
+      };
+    case TYPES.SEARCH_NAME_CAR:
+      return {
+        ...state,
+        name: action.payload,
       };
     default:
       return state;

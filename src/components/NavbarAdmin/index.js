@@ -1,5 +1,5 @@
 import "./style.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,10 +10,13 @@ import {
 } from "reactstrap";
 import SideBar from "./SideBar";
 import { dataSideBar } from "../../redux/actions/dataSideBar";
+import TYPES from "../../redux/types";
+import { testFetchCar } from "../../redux/actions/dataCarList";
 
 const NavbarAdmin = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -29,7 +32,12 @@ const NavbarAdmin = (props) => {
     dispatch(dataSideBar(!sideBar.hideSideBar));
   };
 
-  const { handleSearch } = props;
+  const handleSearchCar = (e) => {
+    e.preventDefault();
+    dispatch({ type: TYPES.SEARCH_NAME_CAR, payload: e.target.value });
+  };
+
+  console.log(location);
 
   return (
     <>
@@ -60,9 +68,18 @@ const NavbarAdmin = (props) => {
                 className="form-control"
                 placeholder="Search"
                 name=""
-                onChange={(e) => handleSearch(e)}
+                onChange={(e) => handleSearchCar(e)}
               />
-              <button className="btn btn-outline-secondary" type="button">
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={() => {
+                  dispatch(testFetchCar());
+                  if (location.pathname !== "/admin/cars") {
+                    navigate("/admin/cars");
+                  }
+                }}
+              >
                 Search
               </button>
             </div>
