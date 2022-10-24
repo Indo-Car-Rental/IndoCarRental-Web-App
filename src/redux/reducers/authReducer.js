@@ -45,6 +45,13 @@ const authReducer = (state=initialState, action) => {
                 tokenLogin: ""
             }
 
+        case TYPES.ADMIN_LOGOUT:
+            return {
+                ...state,
+                tokenLoginAdmin: "",
+                loginErrorStatus: ""
+            }
+
         default:
             return state;
     }

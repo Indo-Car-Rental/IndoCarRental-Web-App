@@ -52,3 +52,9 @@ export const customerLogout = () => (dispatch) => {
     type: TYPES.CUSTOMER_LOGOUT
   });
 };
+
+export const adminLogout = () => (dispatch) => {
+  dispatch({
+    type: TYPES.ADMIN_LOGOUT
+  });
+};

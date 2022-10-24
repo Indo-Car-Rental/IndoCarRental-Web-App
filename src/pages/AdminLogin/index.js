@@ -62,7 +62,7 @@ const AdminLogin = ({ setCmsIsLogin }) => {
             <div>
               <h1>Welcome, Admin BCR</h1>
             </div>
-            {!!status.loginErrorStatus.message && (
+            {(!!status.loginErrorStatus.message) && (
               <Alert color="danger">{status.loginErrorStatus.message}</Alert>
             )}
             <div className="form-input">

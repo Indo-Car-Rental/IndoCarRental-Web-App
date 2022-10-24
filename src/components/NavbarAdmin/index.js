@@ -12,6 +12,7 @@ import SideBar from "./SideBar";
 import { dataSideBar } from "../../redux/actions/dataSideBar";
 import TYPES from "../../redux/types";
 import { testFetchCar } from "../../redux/actions/dataCarList";
+import { adminLogout } from "../../redux/actions/postAuth";
 
 const NavbarAdmin = (props) => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const NavbarAdmin = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("admin-token");
     navigate("/admin/login", { replace: true });
+    dispatch(adminLogout());
   };
 
   const { sideBar } = useSelector((state) => state);
