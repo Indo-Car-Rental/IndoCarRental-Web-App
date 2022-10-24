@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { testFetchCar } from "../../redux/actions/dataCarList";
 import TYPES from "../../redux/types";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
@@ -50,17 +51,27 @@ const AdminCarList = () => {
     return moment(value).format("lll");
   };
 
+  const formatDatesRent = (value) => {
+    return moment(value).format("ll");
+  };
+
   const updateDate = (params) => {
     return formatDatesUpdate(params);
+  };
+
+  const updateRent = (params) => {
+    return formatDatesRent(params);
   };
 
   return (
     <div className="car-list">
       <div className="title">
         <h1>List Car</h1>
-        <button className="button-new-car">
-          <img src={AddLogo} /> Add New Car
-        </button>
+        <Link to={`/admin/form-add-new-car`}>
+          <button className="button-new-car">
+            <img src={AddLogo} /> Add New Car
+          </button>
+        </Link>
       </div>
       <div className="category">
         <button
@@ -113,7 +124,9 @@ const AdminCarList = () => {
                     {item.category}
                   </p>
                   <p>
-                    {item.start_rent_at} - {item.finish_rent_at}
+                    <i className="fa-solid fa-key"></i>
+                    {updateRent(item.start_rent_at)} -{" "}
+                    {updateRent(item.finish_rent_at)}
                   </p>
                   <p className="card-content-update">
                     <img src={ClockLogo} />
@@ -135,12 +148,12 @@ const AdminCarList = () => {
                     <b>Delete</b>
                   </a>
                 </div>
-                <div className="edit-button">
-                  <img src={EditLogo} />
-                  <a>
+                <Link to={`/admin/edit-car/${item.id}`}>
+                  <div className="edit-button">
+                    <img src={EditLogo} />
                     <b>Edit</b>
-                  </a>
-                </div>
+                  </div>
+                </Link>
               </div>
             </div>
           ))}

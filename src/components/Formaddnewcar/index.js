@@ -83,7 +83,7 @@ const Formaddnewcar = () => {
     })
       .then(function (res) {
         setSave(res.status);
-        setError(null)
+        setError(null);
       })
       .catch(function (error) {
         setError(error);
@@ -183,12 +183,14 @@ const Formaddnewcar = () => {
                 <Col sm={10}>
                   <p>-</p>
                 </Col>
-                {!!save && <div className="alert alert-success">Berhasil Ditambah</div>}
+                {!!save && (
+                  <div className="alert alert-success">Berhasil Ditambah</div>
+                )}
                 {!!error && <div className="alert alert-danger">Error</div>}
               </FormGroup>
-              <Button className="cancel" onclick="history.back()">
-                Cancel
-              </Button>
+              <Link to={"/admin/cars"}>
+                <Button className="cancel">Cancel</Button>
+              </Link>
               <Button className="save" onClick={handleAddNewCar}>
                 Save
               </Button>
