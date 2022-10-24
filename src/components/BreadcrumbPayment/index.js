@@ -1,13 +1,29 @@
+import { Link } from "react-router-dom";
 import { Container } from 'reactstrap';
 import './style.scss';
+import { useSelector } from "react-redux";
 
 const BreadcrumbPayment = (props) => {
+    const { payment } = useSelector((state) => state);
+    let url_back;
+
+    if(props.page === 'payment'){
+        url_back = `/carimobil`;
+    }else if(props.page === 'paymentupload'){
+        url_back = `/pembayaran`;
+    }else if(props.page === 'tiket'){
+        url_back = `/konfirmasi-pembayaran/${payment.paymentUpload.id}`;
+    }else{
+        url_back = '';
+    }
+
     return (
         <section id='breadcrumb-payment'>
             <Container>
                 <div className='breadcrumb-wrapper'>
                     <div  className='breadcrumb-left'>
-                        <a href='/'><i className="fa-solid fa-arrow-left"></i></a> 
+                        <Link to={url_back}><i className="fa-solid fa-arrow-left"></i></Link> 
+                        
                         <div>
                             {
                                 props.page === 'tiket' ? (

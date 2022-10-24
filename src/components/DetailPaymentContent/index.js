@@ -19,7 +19,6 @@ const DetailPaymentContent = (props) => {
   const navigate = useNavigate();
 
   const id_car = car.id;
-  console.log(bank)
 
   const { payment } = useSelector((state) => state);
 
