@@ -10,6 +10,7 @@ import Modal from "../AdminDeleteModal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { testFetchCar } from "../../redux/actions/dataCarList";
 import TYPES from "../../redux/types";
+import moment from "moment";
 
 const AdminCarList = () => {
   const [carData, setCarData] = useState([]);
@@ -45,9 +46,16 @@ const AdminCarList = () => {
     document.body.style.overflow = "hidden";
   };
 
+  const formatDatesUpdate = (value) => {
+    return moment(value).format("lll");
+  };
+
+  const updateDate = (params) => {
+    return formatDatesUpdate(params);
+  };
+
   return (
     <div className="car-list">
-      {console.log("Car-List Redux", carList)}
       <div className="title">
         <h1>List Car</h1>
         <button className="button-new-car">
@@ -65,19 +73,19 @@ const AdminCarList = () => {
           className={isActive === 2 ? "active" : ""}
           onClick={() => handleChangeCategory("small", 2)}
         >
-          2-4 People
+          Small
         </button>
         <button
           className={isActive === 3 ? "active" : ""}
           onClick={() => handleChangeCategory("medium", 3)}
         >
-          4-6 People
+          Medium
         </button>
         <button
           className={isActive === 4 ? "active" : ""}
           onClick={() => handleChangeCategory("large", 4)}
         >
-          6-8 People
+          Large
         </button>
       </div>
       <div className="car-list-container">
@@ -86,7 +94,14 @@ const AdminCarList = () => {
             <div className="car-card-container" key={key}>
               <div className="card-content">
                 <div className="card-image">
-                  <img src={item.image} alt="" />
+                  <img
+                    src={
+                      item.image
+                        ? item.image
+                        : `https://img.freepik.com/premium-vector/modern-car-silhouette-illustration-vector-design_500890-234.jpg?w=600`
+                    }
+                    alt=""
+                  />
                 </div>
                 <div className="content-desc">
                   <p>{item.name}</p>
@@ -102,7 +117,7 @@ const AdminCarList = () => {
                   </p>
                   <p className="card-content-update">
                     <img src={ClockLogo} />
-                    {item.updatedAt}
+                    Updated at {updateDate(item.updateAt)}
                   </p>
                 </div>
               </div>

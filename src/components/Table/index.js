@@ -13,7 +13,7 @@ import "primereact/resources/primereact.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/actions/dataAction";
 import axios from "axios";
-import './style.scss'
+import "./style.scss";
 
 const Table = () => {
   const { dataOrder } = useSelector((state) => state);
@@ -28,18 +28,18 @@ const Table = () => {
   // Versi Axios
   const [data, setData] = useState([]);
   useEffect(() => {
-    const accessToken = localStorage.getItem('admin-token');
+    const accessToken = localStorage.getItem("admin-token");
     axios
-    .get("https://bootcamp-rent-cars.herokuapp.com/admin/v2/order", {
-      headers: {
-        "access_token": accessToken
-      }
-    })
-    .then((res) => {
-      console.log("res", res.data.orders);
-      setData(res.data.orders)
-    });
-  }, [])
+      .get("https://bootcamp-rent-cars.herokuapp.com/admin/v2/order", {
+        headers: {
+          access_token: accessToken,
+        },
+      })
+      .then((res) => {
+        // console.log("res", res.data.orders);
+        setData(res.data.orders);
+      });
+  }, []);
 
   // versi redux
   // useEffect(() => {
