@@ -19,6 +19,7 @@ const DetailPaymentContent = (props) => {
   const navigate = useNavigate();
 
   const id_car = car.id;
+  console.log(bank)
 
   const { payment } = useSelector((state) => state);
 
@@ -147,7 +148,7 @@ const DetailPaymentContent = (props) => {
                   </p>
                 </div>
                 <div className="lanjut-button">
-                  <button onClick={handlePayment}>Lanjutkan Pembayaran</button>
+                  <button onClick={handlePayment} disabled={!bank ? 'disabled' : ''}>Lanjutkan Pembayaran</button>
                 </div>
               </div>
             </div>

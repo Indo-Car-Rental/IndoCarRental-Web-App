@@ -46,3 +46,15 @@ export const postLogin = (payload) => (dispatch) => {
       console.log(error.response.data);
     });
 };
+
+export const customerLogout = () => (dispatch) => {
+  dispatch({
+    type: TYPES.CUSTOMER_LOGOUT
+  });
+};
+
+export const adminLogout = () => (dispatch) => {
+  dispatch({
+    type: TYPES.ADMIN_LOGOUT
+  });
+};

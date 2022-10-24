@@ -7,7 +7,7 @@ const initialState = {
     token: "",
     tokenLogin: tokenLogin,
     tokenLoginAdmin: "",
-    loginErrorStatus: ""
+    loginErrorStatus: "",
 }
 
 const authReducer = (state=initialState, action) => {
@@ -37,6 +37,19 @@ const authReducer = (state=initialState, action) => {
             return {
                 ...state,
                 loginErrorStatus: action.payload
+            }
+        
+        case TYPES.CUSTOMER_LOGOUT:
+            return {
+                ...state,
+                tokenLogin: ""
+            }
+
+        case TYPES.ADMIN_LOGOUT:
+            return {
+                ...state,
+                tokenLoginAdmin: "",
+                loginErrorStatus: ""
             }
 
         default:

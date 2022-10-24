@@ -58,7 +58,7 @@ const AdminCarList = () => {
     <div className="car-list">
       <div className="title">
         <h1>List Car</h1>
-        <button>
+        <button className="button-new-car">
           <img src={AddLogo} /> Add New Car
         </button>
       </div>

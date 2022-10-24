@@ -1,5 +1,5 @@
 import { Alert } from "reactstrap";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +62,7 @@ const AdminLogin = ({ setCmsIsLogin }) => {
             <div>
               <h1>Welcome, Admin BCR</h1>
             </div>
-            {!!status.loginErrorStatus.message && (
+            {(!!status.loginErrorStatus.message) && (
               <Alert color="danger">{status.loginErrorStatus.message}</Alert>
             )}
             <div className="form-input">
@@ -91,4 +91,4 @@ const AdminLogin = ({ setCmsIsLogin }) => {
   );
 };
 
-export default AdminLogin;
+export default memo(AdminLogin);

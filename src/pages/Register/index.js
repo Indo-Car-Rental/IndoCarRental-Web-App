@@ -1,8 +1,9 @@
 import "./style.scss"
 import { FormGroup, Label, Input, Button } from "reactstrap"
 import axios from 'axios'
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom"
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 
 const Register = () => {
@@ -69,6 +70,7 @@ const Register = () => {
 
     return (  
         <div className="register-wrap">
+            <HelmetHead title="Register Customer" description="ini adalah halaman Register Customer" />
             <div className="row">
                 <div className="col-lg-6">
                     <div className="left">
@@ -128,4 +130,4 @@ const Register = () => {
     );
 }
  
-export default Register;
+export default memo(Register);

@@ -3,12 +3,13 @@ import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import { navList } from '../../const/staticData';
 import SearchBar from '../../components/SearchBar';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import CarDetail from '../../components/CarDetail';
 import './style.scss';
 import { useSelector } from 'react-redux';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const DetailCar = () => {
     const bannerContent = false;
@@ -46,6 +47,7 @@ const DetailCar = () => {
 
     return (
         <div className='page-detailcar'>
+            <HelmetHead title="Detail Car" description="ini adalah halaman Detail Car" />
             <Navbar {...props} />
             <Banner />
             <SearchBar {...props} />
@@ -55,4 +57,4 @@ const DetailCar = () => {
     );
 }
  
-export default DetailCar;
+export default memo(DetailCar);

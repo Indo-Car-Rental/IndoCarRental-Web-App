@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Navbar from "../../components/Navbar";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -8,24 +9,40 @@ import axios from "axios";
 import CarList from "../../components/CarList";
 import NotFound from "../../components/NotFound";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
-import AdminCarList from "../../components/AdminCarList/AdminCarList";
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const Cars = () => {
   const bannerContent = false;
   const [data, setData] = useState([]);
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("2 - 4 orang");
+  const [category, setCategory] = useState("small");
+  const [status, setStatus] = useState(false);
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
   const [button, setButton] = useState(false);
   const [fdata, setFdata] = useState([]);
   const [notFound, setNotFound] = useState(false);
   const [bgOverlay, setBgOverlay] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("https://bootcamp-rent-cars.herokuapp.com/customer/v2/car")
-      .then((res) => setData(res.data.cars))
-      .catch((err) => console.log(err));
-  }, []);
+    axios({
+      method: 'get',
+      url: 'https://bootcamp-rent-cars.herokuapp.com/customer/v2/car',
+      params: {
+        name : name,
+        category : category,
+        isRented : status,
+        minPrice : minPrice,
+        maxPrice : maxPrice
+      }
+    })
+    .then(function (res) {
+      setData(res.data.cars);
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
+  }, [name, category, status, minPrice, maxPrice]);
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -40,24 +57,30 @@ const Cars = () => {
     setCategory(e.target.value);
   };
 
-  const handleSearch = () => {
-    let newArr = [];
+  const handleChangeStatus = (e) => {
+    setStatus(e.target.value);
+  }
 
-    if (name.toLowerCase().length === 0) {
-      newArr = data.filter((e) => e.category === category);
-    } else {
-      newArr = data.filter(
-        (e) =>
-          e.name.toLowerCase() === name.toLowerCase() && e.category === category
-      );
+  const handleChangePrice = (e) => {
+    if(e.target.value === '1'){
+      setMaxPrice(400000);
+    }else if(e.target.value === '2'){
+      setMinPrice(400000);
+      setMaxPrice(600000);
+    }else if(e.target.value === '3'){
+      setMinPrice(600000);
+    }else{
+      setMinPrice(null);
+      setMaxPrice(null);
     }
+  }
 
-    if (!newArr.length) {
+  const handleSearch = () => {
+    if (data.length === 0) {
       setNotFound(true);
     } else {
       setNotFound(false);
     }
-    setFdata(newArr);
     setButton(true);
     if (!!bgOverlay) {
       setBgOverlay(!bgOverlay);
@@ -102,11 +125,17 @@ const Cars = () => {
     formatRupiah,
     handleFocusInput,
     handleFocusBgOverlay,
+    handleChangeStatus,
+    handleChangePrice,
     bgOverlay,
+    status,
+    name,
+    category
   };
 
   return (
     <>
+      <HelmetHead title="Car List" description="ini adalah halaman car list" />
       {!!bgOverlay ? <BackgroundOverlay {...props} /> : ""}
       <Navbar {...props} />
       <Banner />
@@ -117,4 +146,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default memo(Cars);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Navbar from '../../components/Navbar';
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -10,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import DetailTiketContent from '../../components/DetailTiketContent';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const PaymentTiket = () => {
     const bannerContent = false;
@@ -55,6 +57,7 @@ const PaymentTiket = () => {
 
     return (
         <div className="page-paymentupload">
+            <HelmetHead title="E-tiket Invoice" description="ini adalah halaman E-tiket Invoice" />
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />
@@ -64,4 +67,4 @@ const PaymentTiket = () => {
     );
 }
  
-export default PaymentTiket;
+export default memo(PaymentTiket);

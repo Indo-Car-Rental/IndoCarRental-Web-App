@@ -1,3 +1,4 @@
+import { useState, useEffect, memo } from 'react';
 import Navbar from '../../components/Navbar';
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -7,8 +8,8 @@ import BreadcrumbPayment from '../../components/BreadcrumbPayment';
 import './style.scss';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const PaymentUpload = () => {
     const bannerContent = false;
@@ -55,6 +56,7 @@ const PaymentUpload = () => {
 
     return (
         <div className="page-paymentupload">
+            <HelmetHead title="Upload Bukti Pembayaran" description="ini adalah halaman Upload Bukti Pembayaran" />
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />
@@ -64,4 +66,4 @@ const PaymentUpload = () => {
     );
 }
  
-export default PaymentUpload;
+export default memo(PaymentUpload);

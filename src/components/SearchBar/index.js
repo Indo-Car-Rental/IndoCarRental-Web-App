@@ -4,15 +4,18 @@ import { Container, Label, Input, Button } from 'reactstrap';
 const SearchBar = (props) => {
     const {
         name, 
-        category, 
+        category,
+        status,
         handleChangeName, 
+        handleChangeStatus,
         handleSearch,
         handleEditSearch, 
         handleChangeCategory,
         disableForm,
         handleFocusInput,
         button,
-        bgOverlay
+        bgOverlay,
+        handleChangePrice
     } = props;
     
     return (
@@ -52,13 +55,13 @@ const SearchBar = (props) => {
                                     disabled={!!disableForm || !!button === true ? 'disabled' : ''}
                                 >
                                     <option>
-                                        2 - 4 orang
+                                        small
                                     </option>
                                     <option>
-                                        4 - 6 orang
+                                        medium
                                     </option>
                                     <option>
-                                        6 - 8 orang
+                                        large
                                     </option>
                                 </Input>
                             </div>
@@ -72,20 +75,23 @@ const SearchBar = (props) => {
                                     id="hargaMobil"
                                     name="price"
                                     type="select"
-                                    disabled
+                                    defaultValue=""
+                                    onFocus={handleFocusInput}
+                                    onChange={(e) => handleChangePrice(e)}
+                                    disabled={!!disableForm || !!button === true ? 'disabled' : ''}
                                 >
-                                    {/* <option>
-                                        Masukan Harga Sewa per Hari
+                                    <option value="">
+                                        Semua Harga
                                     </option>
-                                    <option>
-                                        < Rp. 400.000
+                                    <option value={1}>
+                                        {'< Rp. 400.000'}
                                     </option>
-                                    <option>
-                                        Rp. 400.000 - Rp. 600.000
+                                    <option value={2}>
+                                        {'Rp. 400.000 - Rp. 600.000'}
                                     </option>
-                                    <option>
-                                        > Rp. 600.000
-                                    </option> */}
+                                    <option value={3}>
+                                        {'> Rp. 600.000'}
+                                    </option>
                                 </Input>
                             </div>
                         </div>
@@ -98,14 +104,17 @@ const SearchBar = (props) => {
                                     id="statusMobil"
                                     name="status"
                                     type="select"
-                                    disabled
+                                    defaultValue={status}
+                                    onFocus={handleFocusInput}
+                                    onChange={(e) => handleChangeStatus(e)}
+                                    disabled={!!disableForm || !!button === true ? 'disabled' : ''}
                                 >
-                                    {/* <option value={true}>
-                                        True
+                                    <option value={true}>
+                                        Di sewa
                                     </option>
                                     <option value={false}>
-                                        False
-                                    </option> */}
+                                        Tidak Disewa
+                                    </option>
                                 </Input>
                             </div>
                         </div>

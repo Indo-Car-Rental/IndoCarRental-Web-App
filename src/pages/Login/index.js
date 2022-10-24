@@ -2,10 +2,11 @@ import { Container, Row, Input, Label, FormGroup, Button, Alert } from "reactstr
 import "./style.scss";
 import { AiOutlineCar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { postLogin } from "../../redux/actions/postAuth";
 import { useNavigate } from "react-router-dom";
 import { Link as LinkHome } from "react-router-dom";
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -42,6 +43,7 @@ const Login = () => {
 
   return (
     <div className="login">
+    <HelmetHead title="Login Customer" description="ini adalah halaman Login Customer" />
       <Container>
         <Row>
           <div className="wrapper d-flex flex-lg-row flex-column">
@@ -97,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default memo(Login);
