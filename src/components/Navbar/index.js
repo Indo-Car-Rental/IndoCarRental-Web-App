@@ -5,10 +5,19 @@ import { Link as LinkHome } from "react-router-dom";
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ButtonLogin from '../ButtonLogin';
+import {
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+  } from "reactstrap";
 
 const Navbar = ({navList}) => {
     const [showSideBar, setShowSideBar] = useState(false);
     const { status } = useSelector((state) => state);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+    const toggle = () => setDropdownOpen((prevState) => !prevState);
 
     const handleSideBar = () =>{
         setShowSideBar(!showSideBar);
@@ -29,7 +38,7 @@ const Navbar = ({navList}) => {
                         <LinkHome to='/'>
                             <div className='logo'></div>
                         </LinkHome>
-                        <nav className='d-lg-flex justify-content-between'>
+                        <nav className='d-lg-flex justify-content-between align-items-center'>
                             <div className='close'>
                                 <strong>BCR</strong>
                                 <i className='fa-solid fa-x' onClick={handleSideBar}></i>
@@ -40,7 +49,22 @@ const Navbar = ({navList}) => {
                                     <a href={item.url} offset={-70} onClick={handleSideBar} key={item.url}>{item.title}</a>
                                 ))
                             }
-                            {displayButton() ?  null : <ButtonLogin/>}
+                            {displayButton() ?  (
+                                <>
+                                    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                                        <DropdownToggle className="dropdown-btn">
+                                        <div className="avatar">C</div>
+                                        <p>Customer</p>
+                                        <i className="fa-solid fa-chevron-down"></i>
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                        <DropdownItem header>Log in as Customer</DropdownItem>
+                                        <DropdownItem className='btn-logout-cust'>Log out</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                </>
+                            ) : <ButtonLogin/>}
+                            
                         </nav>
                         
                         <div className='hamburger-menu d-flex d-lg-none flex-column justify-content-between' onClick={handleSideBar}>

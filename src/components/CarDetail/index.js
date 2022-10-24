@@ -151,10 +151,16 @@ const CarDetail = (props) => {
                         {formatRupiah(!!car.price ? car.price * totHarga : 0)}
                       </p>
                     </div>
-                    {!!checkCustomerLogin &&(
+                    {!!checkCustomerLogin ? (
                     <div className="lanjut-button">
                       <button disabled={!tanggal ? 'disabled' : ''} onClick={handlePembayaran}>Lanjutkan Pembayaran</button>
                     </div>
+                    ) : (
+                      <div className="lanjut-button">
+                        <Link to={'/login'}>
+                          <button>Login untuk sewa mobil</button>
+                        </Link>
+                      </div>
                     )}
                   </>
                 )}

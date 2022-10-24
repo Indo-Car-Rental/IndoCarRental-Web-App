@@ -87,6 +87,7 @@ section#cardetail {
         .car-img {
           display: flex;
           justify-content: center;
+          margin-bottom: 20px;
           img {
             width: 80%;
           }
@@ -142,4 +143,10 @@ section#cardetail {
       font-size: 12px;
     }
   }
+}
+.rs-picker-daterange{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: 5px;
 }
