@@ -37,8 +37,6 @@ const NavbarAdmin = (props) => {
     dispatch({ type: TYPES.SEARCH_NAME_CAR, payload: e.target.value });
   };
 
-  console.log(location);
-
   return (
     <>
       <header id="navbar">
