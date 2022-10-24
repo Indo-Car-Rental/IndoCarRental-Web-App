@@ -22,10 +22,10 @@ const EditCar = () => {
                 <div className="breadcrumb-wrapper">
                     <Breadcrumb>
                         <BreadcrumbItem>
-                            <a href="dashboard">Dashboard</a>
+                            <a href="/admin/dashboard">Dashboard</a>
                         </BreadcrumbItem>
                         <BreadcrumbItem>
-                            <a href="cars">Cars</a>
+                            <a href="/admin/cars">Cars</a>
                         </BreadcrumbItem>
                         <BreadcrumbItem active>Edit Car</BreadcrumbItem>
                     </Breadcrumb>
@@ -35,7 +35,6 @@ const EditCar = () => {
                     <AdminFormCarEdit />
                 </div>
             </main>
-
         </div>
     );
 }
