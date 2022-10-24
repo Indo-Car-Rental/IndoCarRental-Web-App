@@ -3,7 +3,7 @@ import './style.scss';
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkHome, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ButtonLogin from '../ButtonLogin';
 import {
     Dropdown,
@@ -11,13 +11,14 @@ import {
     DropdownMenu,
     DropdownItem,
   } from "reactstrap";
+import { customerLogout } from '../../redux/actions/postAuth';
 
 const Navbar = ({navList}) => {
     const [showSideBar, setShowSideBar] = useState(false);
     const { status } = useSelector((state) => state);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
   
     const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -25,17 +26,10 @@ const Navbar = ({navList}) => {
         setShowSideBar(!showSideBar);
     }
 
-    useEffect(() => {
-        if(!!status.tokenLogin) {
-            setIsLogin(!isLogin);
-        }
-    }, [])
-    
-
     const handleLogout = () => {
+        dispatch(customerLogout());
         localStorage.removeItem("access_token");
-        setIsLogin(!isLogin);
-        navigate("/", { replace: true });
+        navigate("/");
       };
 
     return (
@@ -58,7 +52,7 @@ const Navbar = ({navList}) => {
                                     <a href={item.url} offset={-70} onClick={handleSideBar} key={item.url}>{item.title}</a>
                                 ))
                             }
-                            {!!isLogin ?  (
+                            {!!status.tokenLogin ?  (
                                 <>
                                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                                         <DropdownToggle className="dropdown-btn">
