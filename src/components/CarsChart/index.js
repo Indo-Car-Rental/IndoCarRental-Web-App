@@ -80,7 +80,7 @@ const CarsChart = () => {
             labels : data.map(item => item.day),
             datasets: [
               {
-                label : `Data Reports`,
+                label : `Data Order Reports`,
                 data : data.map(item => item.orderCount),
                 backgroundColor : ["#586B90"]
               }
@@ -125,10 +125,7 @@ const CarsChart = () => {
         })
         .then(function (res) {
             setData(res.data);
-            console.log("yes",res.data);
             setFrom(from);
-            console.log("from",fromz);
-            console.log("until",untilz);
             setUntil(until);
         })
         .catch(function (error) {
