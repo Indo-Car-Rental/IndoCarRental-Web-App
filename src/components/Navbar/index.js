@@ -1,8 +1,8 @@
 import { Container, Row } from 'reactstrap';
 import './style.scss';
 import { Link as LinkScroll } from "react-scroll";
-import { Link as LinkHome } from "react-router-dom";
-import { useState } from 'react';
+import { Link as LinkHome, useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ButtonLogin from '../ButtonLogin';
 import {
@@ -16,6 +16,8 @@ const Navbar = ({navList}) => {
     const [showSideBar, setShowSideBar] = useState(false);
     const { status } = useSelector((state) => state);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+    const navigate = useNavigate();
   
     const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -23,11 +25,18 @@ const Navbar = ({navList}) => {
         setShowSideBar(!showSideBar);
     }
 
-    const displayButton = () => {
+    useEffect(() => {
         if(!!status.tokenLogin) {
-            return true
+            setIsLogin(!isLogin);
         }
-    }
+    }, [])
+    
+
+    const handleLogout = () => {
+        localStorage.removeItem("access_token");
+        setIsLogin(!isLogin);
+        navigate("/", { replace: true });
+      };
 
     return (
         <header id='navbar' sidebar={ !showSideBar ? 'false' : 'true' }>
@@ -49,7 +58,7 @@ const Navbar = ({navList}) => {
                                     <a href={item.url} offset={-70} onClick={handleSideBar} key={item.url}>{item.title}</a>
                                 ))
                             }
-                            {displayButton() ?  (
+                            {!!isLogin ?  (
                                 <>
                                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                                         <DropdownToggle className="dropdown-btn">
@@ -59,7 +68,7 @@ const Navbar = ({navList}) => {
                                         </DropdownToggle>
                                         <DropdownMenu>
                                         <DropdownItem header>Log in as Customer</DropdownItem>
-                                        <DropdownItem className='btn-logout-cust'>Log out</DropdownItem>
+                                        <DropdownItem className='btn-logout-cust' onClick={handleLogout}>Log out</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </>
