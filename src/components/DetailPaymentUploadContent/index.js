@@ -88,8 +88,6 @@ const DetailPaymentUploadContent = (props) => {
     navigate(`/tiket/${id_order}`);
   }
 
-  console.log(dataOrder);
-
   return (
     <section id="detailpaymentupload">
       <Container>

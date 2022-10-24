@@ -5,17 +5,17 @@ import { useSelector } from "react-redux";
 
 const BreadcrumbPayment = (props) => {
     const { payment } = useSelector((state) => state);
-    const id_car = payment.paymentData.car.id;
     let url_back;
 
     if(props.page === 'payment'){
-        url_back = `/detailmobil/${id_car}`;
+        url_back = `/carimobil`;
     }else if(props.page === 'paymentupload'){
         url_back = `/pembayaran`;
     }else if(props.page === 'tiket'){
         url_back = `/konfirmasi-pembayaran/${payment.paymentUpload.id}`;
+    }else{
+        url_back = '';
     }
-    console.log("data", payment.paymentUpload.id)
 
     return (
         <section id='breadcrumb-payment'>
