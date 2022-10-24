@@ -1,0 +1,32 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    <url>
+        <loc>https://indocarrental.xyz/#ourservices</loc>
+        <lastmod>2022-10-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://indocarrental.xyz/#whyus</loc>
+        <lastmod>2022-10-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://indocarrental.xyz/#testimonial</loc>
+        <lastmod>2022-10-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://indocarrental.xyz/#faq</loc>
+        <lastmod>2022-10-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>https://indocarrental.xyz/login</loc>
+        <lastmod>2022-10-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+</urlset>
