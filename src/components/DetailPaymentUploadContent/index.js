@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -44,6 +44,9 @@ const DetailPaymentUploadContent = (props) => {
       setCopyTotalPrice(false);
     }, 1000);
   }
+
+  const [dateDeadline, setDateDeadline] = useState(Date.now() + 86400000);
+  const [dateUpload, setDateUpload] = useState(Date.now() + 600000);
 
   const renderer = ({ hours, minutes, seconds }) => {
     return (
@@ -103,7 +106,7 @@ const DetailPaymentUploadContent = (props) => {
                   <p>Kamis, 27 Oktober 2022 jam 19.00 WIB</p>
                 </div>
                 <Countdown 
-                  date={Date.now() + 86400000} 
+                  date={dateDeadline} 
                   renderer={renderer}
                 />
               </div>
@@ -237,7 +240,7 @@ const DetailPaymentUploadContent = (props) => {
                 ) : (
                   <>
                     <Countdown
-                      date={Date.now() + 600000} 
+                      date={dateUpload} 
                       renderer={rendererUpload}
                     />
                     <strong>
