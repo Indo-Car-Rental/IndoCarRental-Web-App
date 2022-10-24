@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import CarDetail from '../../components/CarDetail';
 import './style.scss';
 import { useSelector } from 'react-redux';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const DetailCar = () => {
     const bannerContent = false;
@@ -46,6 +47,7 @@ const DetailCar = () => {
 
     return (
         <div className='page-detailcar'>
+            <HelmetHead title="Detail Car" description="ini adalah halaman Detail Car" />
             <Navbar {...props} />
             <Banner />
             <SearchBar {...props} />

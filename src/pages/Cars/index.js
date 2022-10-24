@@ -9,7 +9,7 @@ import axios from "axios";
 import CarList from "../../components/CarList";
 import NotFound from "../../components/NotFound";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
-import AdminCarList from "../../components/AdminCarList/AdminCarList";
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const Cars = () => {
   const bannerContent = false;
@@ -135,6 +135,7 @@ const Cars = () => {
 
   return (
     <>
+      <HelmetHead title="Car List" description="ini adalah halaman car list" />
       {!!bgOverlay ? <BackgroundOverlay {...props} /> : ""}
       <Navbar {...props} />
       <Banner />

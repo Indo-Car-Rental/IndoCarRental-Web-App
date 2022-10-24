@@ -8,6 +8,7 @@ import Testimonial from '../../components/Testimonial';
 import Marketing from '../../components/Marketing';
 import FAQ from '../../components/FAQ';
 import { navList, serviceList, cardWhyUs, testimonial, faq } from '../../const/staticData';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const Home = () => {
     const bannerContent = true;
@@ -24,6 +25,7 @@ const Home = () => {
 
     return (
         <>
+            <HelmetHead title="Home Page" description="ini adalah halaman home page" />
             <Navbar {...props} />
             <Banner {...props} />
             <OurServices {...props} />

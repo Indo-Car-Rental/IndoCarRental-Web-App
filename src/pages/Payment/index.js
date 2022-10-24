@@ -8,6 +8,7 @@ import DetailPaymentContent from '../../components/DetailPaymentContent';
 import BreadcrumbPayment from '../../components/BreadcrumbPayment';
 import './style.scss';
 import { useSelector } from 'react-redux';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const Payment = () => {
     const bannerContent = false;
@@ -69,6 +70,7 @@ const Payment = () => {
 
     return (
         <div className='page-payment'>
+            <HelmetHead title="Pembayaran" description="ini adalah halaman Pembayaran" />
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />

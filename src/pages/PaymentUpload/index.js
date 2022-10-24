@@ -9,6 +9,7 @@ import './style.scss';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import HelmetHead from "../../components/SEO/HelmetHead";
 
 const PaymentUpload = () => {
     const bannerContent = false;
@@ -55,6 +56,7 @@ const PaymentUpload = () => {
 
     return (
         <div className="page-paymentupload">
+            <HelmetHead title="Upload Bukti Pembayaran" description="ini adalah halaman Upload Bukti Pembayaran" />
             <Navbar {...props} />
             <Banner />
             <BreadcrumbPayment {...props} />
