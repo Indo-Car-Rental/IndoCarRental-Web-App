@@ -34,7 +34,6 @@ const Navbar = ({navList}) => {
 
     return (
         <header id='navbar' sidebar={ !showSideBar ? 'false' : 'true' }>
-            
             <Container>
                 <Row>
                     <div className='wrapper d-flex justify-content-between align-items-center'>
