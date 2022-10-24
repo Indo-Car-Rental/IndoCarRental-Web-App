@@ -100,7 +100,7 @@ const DetailPaymentUploadContent = (props) => {
                     <p>Selesaikan Pembayaran Sebelum</p>
                   </strong>
 
-                  <p>Rabu, 19 Mei 2022 jam 13.00 WIB</p>
+                  <p>Kamis, 27 Oktober 2022 jam 19.00 WIB</p>
                 </div>
                 <Countdown 
                   date={Date.now() + 86400000} 
