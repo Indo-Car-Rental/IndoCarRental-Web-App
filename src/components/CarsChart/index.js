@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Bar } from "react-chartjs-2";
-import { dataJune, dataJuly, dataAugust } from './data';
+import { dataTest } from './data';
 import "./style.scss";
 import { 
     Chart as ChartJS,
@@ -29,6 +29,9 @@ import {
     Tooltip,
     SubTitle
 } from "chart.js";
+import { DateRangePicker } from "rsuite";
+import "rsuite/dist/rsuite.css";
+import axios from "axios";
 
 ChartJS.register(
     ArcElement,
@@ -58,6 +61,7 @@ ChartJS.register(
 );
 
 const CarsChart = () => {
+    const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
     const [dataChart, setDataChart] = useState({
         labels: [],
         datasets: [{
@@ -65,39 +69,69 @@ const CarsChart = () => {
           data: []
         }]
     });
-    const [date, setDate] = useState("june");
-    const [data, setData] = useState(dataJune);
+    const [data, setData] = useState(dataTest);
+    const [datas, setDatas] = useState();
+
+    const [from, setFrom] = useState("2022-10-01");
+    const [until, setUntil] = useState("2022-10-30");
 
     useEffect(() => {
         setDataChart({
-            labels : data.map(item => item.date),
+            labels : data.map(item => item.day),
             datasets: [
               {
-                label : `Data ${date}`,
-                data : data.map(item => item.totalOrder),
+                label : `Data Order Reports`,
+                data : data.map(item => item.orderCount),
                 backgroundColor : ["#586B90"]
               }
             ]
         });
     }, [data]);
-    
-    const handleSelectDate = (e) =>{
-        setDate(e.target.value);
-    }
-    
-    const handleSubmitSelectDate = (e) =>{
-        e.preventDefault(date);
 
-        if(date === 'june'){
-            setData(dataJune);
-        }else if(date === 'july'){
-            setData(dataJuly);
-        }else if(date === 'august'){
-            setData(dataAugust);
-        }
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'https://bootcamp-rent-cars.herokuapp.com/admin/order/reports',
+            params: {
+                from: from,
+                until: until
+            },
+            headers: {
+                access_token : localStorage.getItem("admin-token")
+            }
+        })
+        .then(function (res) {
+            setData(res.data);
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
+    }, []);
 
-        console.log(data);
-    }
+    const handleCalender = (e) => {
+        const fromz = `${e[0].getFullYear()}-${e[0].getMonth()+1}-${e[0].getDate()}`;
+        const untilz = `${e[1].getFullYear()}-${e[1].getMonth()+1}-${e[1].getDate()}`;
+
+        axios({
+            method: 'get',
+            url: 'https://bootcamp-rent-cars.herokuapp.com/admin/order/reports',
+            params: {
+                from: fromz,
+                until: untilz
+            },
+            headers: {
+                access_token : localStorage.getItem("admin-token")
+            }
+        })
+        .then(function (res) {
+            setData(res.data);
+            setFrom(from);
+            setUntil(until);
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
+    };
 
     return (
         <section id="carsChart">
@@ -105,12 +139,13 @@ const CarsChart = () => {
                 <p>Month</p>
                 <div className="mont-dropdown">
                     <div className="input-group d-flex">
-                        <select onChange={(e) => handleSelectDate(e)}>
-                            <option value='june'>June 2022</option>
-                            <option value='july'>July 2022</option>
-                            <option value='august'>Agustus 2022</option>
-                        </select>
-                        <button className="btn btn-primary" onClick={handleSubmitSelectDate}>Go</button>
+                        <DateRangePicker
+                            showOneCalendar
+                            disabledDate={allowedMaxDays(30)}
+                            placeholder="Pilih tanggal reports"
+                            size="md"
+                            onChange={handleCalender}
+                        />
                     </div>
                 </div>
             </div>
