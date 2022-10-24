@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ memo } from "react";
 import Formaddnewcar from "../../components/Formaddnewcar";
 
 const Formnewcar = () => {
@@ -9,4 +9,4 @@ const Formnewcar = () => {
      );
 }
  
-export default Formnewcar;
+export default memo(Formnewcar);

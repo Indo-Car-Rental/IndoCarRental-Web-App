@@ -6,7 +6,7 @@ import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import "./style.scss";
 import Modal from "../../components/AdminDeleteModal/Modal";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 const AdminCarDashboard = () => {
   const page = "cars";
@@ -37,4 +37,4 @@ const AdminCarDashboard = () => {
   );
 };
 
-export default AdminCarDashboard;
+export default memo(AdminCarDashboard);

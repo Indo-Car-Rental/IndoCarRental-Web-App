@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useSelector } from "react-redux"
 import { Breadcrumb, BreadcrumbItem } from "reactstrap"
 import SectionTitle from "../../../components/SectionTitle"
@@ -39,4 +40,4 @@ const EditCar = () => {
     );
 }
  
-export default EditCar;
+export default memo(EditCar);

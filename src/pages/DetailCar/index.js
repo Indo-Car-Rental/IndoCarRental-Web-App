@@ -3,7 +3,7 @@ import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import { navList } from '../../const/staticData';
 import SearchBar from '../../components/SearchBar';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import CarDetail from '../../components/CarDetail';
@@ -55,4 +55,4 @@ const DetailCar = () => {
     );
 }
  
-export default DetailCar;
+export default memo(DetailCar);

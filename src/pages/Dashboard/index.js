@@ -1,3 +1,4 @@
+import { useEffect, useState, memo } from "react";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { testFetchCar, FetchCarSmall } from "../../redux/actions/dataCarList";
@@ -6,7 +7,6 @@ import CarsChart from "../../components/CarsChart";
 import SectionTitle from "../../components/SectionTitle";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Table from "../../components/Table";
-import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const page = "dashboard";
@@ -48,4 +48,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

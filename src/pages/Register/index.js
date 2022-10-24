@@ -1,7 +1,7 @@
 import "./style.scss"
 import { FormGroup, Label, Input, Button } from "reactstrap"
 import axios from 'axios'
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom"
 
 
@@ -128,4 +128,4 @@ const Register = () => {
     );
 }
  
-export default Register;
+export default memo(Register);

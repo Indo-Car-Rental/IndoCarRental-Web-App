@@ -1,5 +1,5 @@
 import { Alert } from "reactstrap";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,4 +91,4 @@ const AdminLogin = ({ setCmsIsLogin }) => {
   );
 };
 
-export default AdminLogin;
+export default memo(AdminLogin);

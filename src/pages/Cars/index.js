@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Navbar from "../../components/Navbar";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -144,4 +145,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default memo(Cars);

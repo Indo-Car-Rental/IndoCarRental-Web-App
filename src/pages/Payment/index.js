@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Navbar from '../../components/Navbar';
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -78,4 +79,4 @@ const Payment = () => {
     );
 }
  
-export default Payment;
+export default memo(Payment);

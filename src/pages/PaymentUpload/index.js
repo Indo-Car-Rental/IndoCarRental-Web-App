@@ -1,3 +1,4 @@
+import { useState, useEffect, memo } from 'react';
 import Navbar from '../../components/Navbar';
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
@@ -7,7 +8,6 @@ import BreadcrumbPayment from '../../components/BreadcrumbPayment';
 import './style.scss';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const PaymentUpload = () => {
@@ -64,4 +64,4 @@ const PaymentUpload = () => {
     );
 }
  
-export default PaymentUpload;
+export default memo(PaymentUpload);
