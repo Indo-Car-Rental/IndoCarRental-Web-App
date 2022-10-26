@@ -54,14 +54,17 @@ const SearchBar = (props) => {
                                     onChange={(e) => handleChangeCategory(e)}
                                     disabled={!!disableForm || !!button === true ? 'disabled' : ''}
                                 >
-                                    <option>
-                                        small
+                                    <option value="">
+                                        Semua Kategori
                                     </option>
-                                    <option>
-                                        medium
+                                    <option value={"small"}>
+                                        Small
                                     </option>
-                                    <option>
-                                        large
+                                    <option value={"medium"}>
+                                        Medium
+                                    </option>
+                                    <option value={"large"}>
+                                        Large
                                     </option>
                                 </Input>
                             </div>

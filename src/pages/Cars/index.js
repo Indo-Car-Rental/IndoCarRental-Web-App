@@ -15,7 +15,7 @@ const Cars = () => {
   const bannerContent = false;
   const [data, setData] = useState([]);
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("small");
+  const [category, setCategory] = useState("");
   const [status, setStatus] = useState(false);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
